@@ -10,7 +10,7 @@
       </button>
     </span>
   </div>
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" color="primary">
+  <table *ngIf="dataSource; else elseBlock" mat-table [dataSource]="dataSource" class="mat-elevation-z8" color="primary">
     <!-- Position Column -->
     <ng-container matColumnDef="position">
       <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
@@ -55,3 +55,6 @@
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </table>
 </div>
+
+<ng-template #elseBlock><mat-spinner></mat-spinner></ng-template>
+

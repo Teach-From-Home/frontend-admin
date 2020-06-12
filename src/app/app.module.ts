@@ -8,6 +8,8 @@ import { LandingComponent } from './components/landing/landing.component';
 import { MaterialModule } from './material.module';
 import { UsersComponent } from './components/users/users.component';
 import { YesNoModalComponent } from './components/yesNoModal/yesNoModal.component';
+import { UserService } from './services/userService';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,8 +28,9 @@ import { YesNoModalComponent } from './components/yesNoModal/yesNoModal.componen
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

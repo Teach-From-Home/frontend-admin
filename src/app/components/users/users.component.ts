@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { User } from 'src/app/domain/user';
 import { MatDialog } from '@angular/material/dialog';
 import { YesNoModalComponent } from '../yesNoModal/yesNoModal.component';
+import { UserService } from '../../services/userService';
+import { DataSource } from '@angular/cdk/table';
 
 
 
@@ -18,18 +20,16 @@ const ELEMENT_DATA: User[] = [
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css'],
 })
-export class UsersComponent {
-  constructor( public dialog: MatDialog ) {
-
+export class UsersComponent implements OnInit {
+  constructor(public dialog: MatDialog, private userService: UserService) {
   }
-  displayedColumns: string[] = [
-    'position',
-    'name',
-    'weight',
-    'symbol',
-    'actions',
-  ];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  usuarios: User[];
+  ngOnInit(): void {
+    this.fetchUsers();
+  }
+
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'actions'];
+  dataSource: MatTableDataSource<User>;
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -42,4 +42,10 @@ export class UsersComponent {
       alert(result)
     })
   }
+
+  async fetchUsers() {
+    const response = await this.userService.getUsers()
+    this.dataSource = new MatTableDataSource<User>(response);
+  }
+
 }
