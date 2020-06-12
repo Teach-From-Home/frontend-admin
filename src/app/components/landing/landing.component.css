@@ -1,10 +1,19 @@
-.centered{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10rem;
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10rem;
+  flex-wrap: wrap;
 }
 
-mat-card{
-    margin: 1rem;
+mat-card {
+  margin: 1rem;
+  width: 15rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.img {
+  flex-grow: 1;
 }

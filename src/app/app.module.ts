@@ -6,15 +6,28 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LandingComponent } from './components/landing/landing.component';
 import { MaterialModule } from './material.module';
+import { UsersComponent } from './components/users/users.component';
+import { YesNoModalComponent } from './components/yesNoModal/yesNoModal.component';
+
 @NgModule({
-  declarations: [AppComponent, LandingComponent],
+  declarations: [
+    AppComponent,
+    LandingComponent,
+    UsersComponent,
+    YesNoModalComponent,
+  ],
+
+  entryComponents: [
+    YesNoModalComponent,
+  ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

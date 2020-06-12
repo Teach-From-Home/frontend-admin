@@ -1,0 +1,57 @@
+<div class="tableContainer">
+  <div class="formWarap">
+    <mat-form-field>
+      <mat-label>Buscar usuarios</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Texto a buscar" />
+    </mat-form-field>
+    <span>
+      <button mat-mini-fab color="primary">
+        +
+      </button>
+    </span>
+  </div>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" color="primary">
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.name }}
+      </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Apellido </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.lastName }} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="weight">
+      <mat-header-cell *matHeaderCellDef> DNI </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.dni }} </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <mat-header-cell *matHeaderCellDef> E-mail </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.email }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+
+        <button mat-icon-button>
+          <mat-icon matTooltip="Editar Alumno">create</mat-icon>
+        </button>
+        <button mat-icon-button (click)="shouldDelete()">
+          <mat-icon matTooltip="Eliminar usuario">delete</mat-icon>
+        </button>
+
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </table>
+</div>
