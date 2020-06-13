@@ -10,10 +10,10 @@ import { UserFormComponent } from './userForm/userForm.component';
 
 
 const ELEMENT_DATA: User[] = [
-  { name: 'Javier', lastName: 'Gomez', dni: 12344567, email: 'javiemgz@gmail.com', active: true },
-  { name: 'Agustin', lastName: 'Tini', dni: 12344567, email: 'agustini@gmail.com', active: true },
-  { name: 'Nicolas', lastName: 'Chiozza', dni: 12344567, email: 'niko@gmail.com', active: false },
-  { name: 'Eugenio', lastName: 'Rossetto', dni: 12344567, email: 'reuzal@gmail.com', active: true },
+  {id:"123", name: 'Javier', lastName: 'Gomez', password:"asejre", dni: 12344567, email: 'javiemgz@gmail.com', active: true },
+  {id:"123", name: 'Agustin', lastName: 'Tini', password:"asejre", dni: 12344567, email: 'agustini@gmail.com', active: true },
+  {id:"123", name: 'Nicolas', lastName: 'Chiozza', password:"asejre", dni: 12344567, email: 'niko@gmail.com', active: false },
+  {id:"123", name: 'Eugenio', lastName: 'Rossetto', password:"asejre", dni: 12344567, email: 'reuzal@gmail.com', active: true },
 ];
 
 @Component({
@@ -30,8 +30,8 @@ export class UsersComponent implements OnInit {
   usuarios: User[];
 
   ngOnInit(): void {
-    //this.fetchUsers();
-    this.dataSource =  new MatTableDataSource<User>(ELEMENT_DATA);
+    this.fetchUsers();
+    //this.dataSource =  new MatTableDataSource<User>(ELEMENT_DATA);
   }
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'status', 'actions'];
@@ -48,6 +48,7 @@ export class UsersComponent implements OnInit {
       alert(result)
     })
   }
+
   editUser() {
     const dialogRef = this.dialog.open(UserFormComponent, {})
     dialogRef.afterClosed().subscribe(result => {

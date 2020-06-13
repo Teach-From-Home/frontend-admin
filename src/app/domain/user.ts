@@ -1,7 +1,9 @@
 export class User{
+    id:string
     name:string
     lastName:string
     dni:number
+    password:string
     email:string
     active:boolean
 

@@ -125,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "admin-console"
+  "defaultProject": "admin-console",
+  "cli": {
+    "analytics": false
+  }
 }
