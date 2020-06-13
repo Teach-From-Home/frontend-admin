@@ -37,11 +37,17 @@
       <mat-cell *matCellDef="let element"> {{ element.email }} </mat-cell>
     </ng-container>
 
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ getStatus(element) }} </mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
       <mat-cell *matCellDef="let element">
 
-        <button mat-icon-button>
+        <button mat-icon-button (click)="editUser()">
           <mat-icon matTooltip="Editar Alumno">create</mat-icon>
         </button>
         <button mat-icon-button (click)="shouldDelete()">

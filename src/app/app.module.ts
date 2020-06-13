@@ -10,6 +10,9 @@ import { UsersComponent } from './components/users/users.component';
 import { YesNoModalComponent } from './components/yesNoModal/yesNoModal.component';
 import { UserService } from './services/userService';
 import { HttpClientModule } from '@angular/common/http';
+import { UserFormComponent } from './components/users/userForm/userForm.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -17,10 +20,12 @@ import { HttpClientModule } from '@angular/common/http';
     LandingComponent,
     UsersComponent,
     YesNoModalComponent,
+    UserFormComponent,
   ],
 
   entryComponents: [
     YesNoModalComponent,
+    UserFormComponent,
   ],
 
   imports: [
@@ -29,6 +34,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
+    FormsModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
   ],
   providers: [UserService],
   bootstrap: [AppComponent],
