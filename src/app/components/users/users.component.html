@@ -5,12 +5,13 @@
       <input matInput (keyup)="applyFilter($event)" placeholder="Texto a buscar" />
     </mat-form-field>
     <span>
-      <button mat-mini-fab color="primary">
+      <button mat-mini-fab color="primary" (click)="editUser('')">
         +
       </button>
     </span>
   </div>
-  <table *ngIf="dataSource; else elseBlock" mat-table [dataSource]="dataSource" class="mat-elevation-z8" color="primary">
+  <table *ngIf="dataSource; else elseBlock" mat-table [dataSource]="dataSource" class="mat-elevation-z8"
+    color="primary">
     <!-- Position Column -->
     <ng-container matColumnDef="position">
       <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
@@ -22,7 +23,7 @@
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Apellido </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.lastName }} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{ element.lastname }} </mat-cell>
     </ng-container>
 
     <!-- Weight Column -->
@@ -47,11 +48,13 @@
       <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
       <mat-cell *matCellDef="let element">
 
-        <button mat-icon-button (click)="editUser()">
+        <button mat-icon-button [disabled]="!element.active" (click)="editUser(element.id)">
           <mat-icon matTooltip="Editar Alumno">create</mat-icon>
         </button>
-        <button mat-icon-button (click)="shouldDelete()">
-          <mat-icon matTooltip="Eliminar usuario">delete</mat-icon>
+
+        <button  mat-icon-button (click)="shouldDelete(element.id)">
+          <!-- <mat-icon *ngIf="!element.active" matTooltip="Reactivar usuario">add</mat-icon> -->
+          <mat-icon *ngIf="element.active" matTooltip="Eliminar usuario">delete</mat-icon>
         </button>
 
       </mat-cell>
@@ -62,5 +65,6 @@
   </table>
 </div>
 
-<ng-template #elseBlock><mat-spinner></mat-spinner></ng-template>
-
+<ng-template #elseBlock>
+  <mat-spinner></mat-spinner>
+</ng-template>

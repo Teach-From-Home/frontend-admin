@@ -6,15 +6,17 @@ import { YesNoModalComponent } from '../yesNoModal/yesNoModal.component';
 import { UserService } from '../../services/userService';
 import { DataSource } from '@angular/cdk/table';
 import { UserFormComponent } from './userForm/userForm.component';
+import { isUndefined } from 'util';
 
 
 
-const ELEMENT_DATA: User[] = [
-  {id:"123", name: 'Javier', lastName: 'Gomez', password:"asejre", dni: 12344567, email: 'javiemgz@gmail.com', active: true },
-  {id:"123", name: 'Agustin', lastName: 'Tini', password:"asejre", dni: 12344567, email: 'agustini@gmail.com', active: true },
-  {id:"123", name: 'Nicolas', lastName: 'Chiozza', password:"asejre", dni: 12344567, email: 'niko@gmail.com', active: false },
-  {id:"123", name: 'Eugenio', lastName: 'Rossetto', password:"asejre", dni: 12344567, email: 'reuzal@gmail.com', active: true },
-];
+// const ELEMENT_DATA: User[] = [
+//   {id:"123", name: 'Javier',       <mat-cell *matCellDef="let element"> {{ element.lastname }} </mat-cell>
+// : 'Gomez', password:"asejre", dni: 12344567, email: 'javiemgz@gmail.com', active: true },
+//   {id:"123", name: 'Agustin', lastName: 'Tini', password:"asejre", dni: 12344567, email: 'agustini@gmail.com', active: true },
+//   {id:"123", name: 'Nicolas', lastName: 'Chiozza', password:"asejre", dni: 12344567, email: 'niko@gmail.com', active: false },
+//   {id:"123", name: 'Eugenio', lastName: 'Rossetto', password:"asejre", dni: 12344567, email: 'reuzal@gmail.com', active: true },
+// ];
 
 @Component({
   selector: 'app-users',
@@ -27,7 +29,6 @@ export class UsersComponent implements OnInit {
   constructor(public dialog: MatDialog, private userService: UserService) {
   }
 
-  usuarios: User[];
 
   ngOnInit(): void {
     this.fetchUsers();
@@ -42,17 +43,25 @@ export class UsersComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  shouldDelete() {
-    const dialogRef = this.dialog.open(YesNoModalComponent, {})
-    dialogRef.afterClosed().subscribe(result => {
-      alert(result)
+  shouldDelete(id:string) {
+    const dialogRef = this.dialog.open(YesNoModalComponent, { })
+    dialogRef.afterClosed().subscribe((result) => {
+      if(result){
+        this.deleteUser(id)
+        this.fetchUsers()
+      }
     })
   }
 
-  editUser() {
-    const dialogRef = this.dialog.open(UserFormComponent, {})
+  async deleteUser(id:string){
+    await this.userService.deleteUser(id)
+  }
+  editUser(id:String) {
+    const dialogRef = this.dialog.open(UserFormComponent, {
+      data: id === "" ? "" : id
+    })
     dialogRef.afterClosed().subscribe(result => {
-      alert(result)
+      if(result) this.fetchUsers()
     })
   }
 
@@ -61,7 +70,7 @@ export class UsersComponent implements OnInit {
     this.dataSource = new MatTableDataSource<User>(response);
   }
 
-  getStatus(user:User){
+  getStatus(user: User) {
     return user.active ? "activo" : "inactivo"
   }
 }

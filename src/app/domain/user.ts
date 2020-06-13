@@ -1,7 +1,7 @@
 export class User{
     id:string
     name:string
-    lastName:string
+    lastname:string
     dni:number
     password:string
     email:string
