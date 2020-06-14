@@ -26,7 +26,6 @@ export class UserFormComponent implements OnInit {
       password: ['', Validators.required],
       dni: ['', Validators.required],
       email: ['', Validators.required],
-      role:['', Validators.required],
     })
   }
 
@@ -43,7 +42,7 @@ export class UserFormComponent implements OnInit {
   }
 
   formHasData() {
-    return this.dataForm.status == 'INVALID'
+    return this.dataForm.status == 'INVALID' || isUndefined(this.user.role)
   }
 
   error(errorMessage: string) {

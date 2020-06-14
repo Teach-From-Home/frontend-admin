@@ -39,12 +39,12 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Rol</mat-label>
-        <mat-select formControlName="role" [disabled]="user.id" [(value)]="user.role">
+        <mat-select [disabled]="user.id" [(value)]="user.role">
           <mat-option [value]="'TEACHER'">Profesor</mat-option>
           <mat-option [value]="'STUDENT'">Estudiante</mat-option>
           <mat-option [value]="'ADMIN'">Admin</mat-option>
         </mat-select>
-        <mat-error *ngIf="hasError('role','required')">
+        <mat-error *ngIf="!user.role">
           Seleccione un <strong>Rol</strong>
         </mat-error>
       </mat-form-field>
