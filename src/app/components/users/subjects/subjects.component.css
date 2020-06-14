@@ -1,0 +1,50 @@
+.mainFriends{
+    margin: 1rem;
+    display: flex;
+}
+
+.containerFriends{
+    width: 46rem;
+    text-align: center;
+    margin: auto;
+}
+
+
+.matInputFriend, .listFriends{
+    width: 100%;
+}
+
+mat-cmat-card-footer{
+    text-align: right;
+    margin: auto;
+}
+.buttonAdd{
+margin: auto;
+flex-direction: row;
+display: flex;
+margin-left: 10px;
+}
+
+
+.buttonclear{
+    flex: 1 1 auto;
+}
+
+.formAutocomplit{
+    min-width: 150px;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    margin-left: 1rem;
+}
+
+.buttonRemove{
+    display: flex;
+}
+
+::ng-deep .mainFriends{
+
+    border-radius: 20px !important;
+    border: 1px solid #663366;
+}
+

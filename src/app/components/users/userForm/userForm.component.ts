@@ -1,8 +1,8 @@
-import { Component, OnInit, Inject, Optional } from '@angular/core';
-import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { Component, Inject, OnInit, Optional } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from 'src/app/domain/user';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { UserService } from 'src/app/services/userService';
 import { isUndefined } from 'util';
 
@@ -14,7 +14,7 @@ import { isUndefined } from 'util';
 export class UserFormComponent implements OnInit {
 
   public dataForm: FormGroup
-  user = new User
+  user:User
 
   constructor(private snackBar: MatSnackBar, public dialogRef: MatDialogRef<UserFormComponent>,
     private biulter: FormBuilder, @Optional() @Inject(MAT_DIALOG_DATA) private data: string,
@@ -25,7 +25,8 @@ export class UserFormComponent implements OnInit {
       lastName: ['', Validators.required],
       password: ['', Validators.required],
       dni: ['', Validators.required],
-      email: ['', Validators.required]
+      email: ['', Validators.required],
+      role:['', Validators.required],
     })
   }
 
@@ -61,5 +62,13 @@ export class UserFormComponent implements OnInit {
     catch{
       this.error("algo malio sal")
     }
+  }
+
+  getUser(){
+    return !isUndefined(this.user)
+  }
+
+  isTeacher(){
+    return this.user.role==="TEACHER"
   }
 }

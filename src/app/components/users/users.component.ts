@@ -35,7 +35,7 @@ export class UsersComponent implements OnInit {
     //this.dataSource =  new MatTableDataSource<User>(ELEMENT_DATA);
   }
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'status', 'actions'];
+  displayedColumns: string[] = ['name', 'lastname', 'dni', 'email', 'status', 'actions'];
   dataSource: MatTableDataSource<User>;
 
   applyFilter(event: Event) {

@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserFormComponent } from './components/users/userForm/userForm.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
+import { SubjectsComponent } from './components/users/subjects/subjects.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     UsersComponent,
     YesNoModalComponent,
     UserFormComponent,
+    SubjectsComponent,
   ],
 
   entryComponents: [

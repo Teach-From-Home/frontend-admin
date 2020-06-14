@@ -1,0 +1,44 @@
+<mat-card *ngIf="subjectsNotAdded" class="mainFriends">
+
+  <div class="containerFriends">
+    <h2>Gestion de materias:</h2><br>
+    <div *ngIf="hasSubjectsToAdd(); else elseBlock" class="LoginFriends">
+      <form class="formAutocomplit">
+        <mat-form-field appearance="outline" class="matInputFriend">
+          <mat-label>Materias</mat-label>
+          <input type="text" placeholder="Seleccione un subject" aria-label="allSubjects" matInput
+            [formControl]="myControl" [matAutocomplete]="auto" required>
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let subject of subjectsNotAdded" [value]="subject">
+              {{subject.name}}
+            </mat-option>
+          </mat-autocomplete>
+          <mat-error *ngIf="myControl.hasError('required')">
+            Elija una <strong>Materia</strong> de la <strong>Lista</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-card-footer class="buttonAdd">
+          <button color="primary" mat-flat-button (click)="addSubject()" [disabled]="cantAddSubject()">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">add
+            </mat-icon>
+          </button>
+        </mat-card-footer>
+      </form>
+    </div>
+    <mat-nav-list class="listFriends">
+      <div *ngFor="let subject of user.subjects" class="buttonRemove">
+        <mat-list-item>
+          {{subject.name}}
+        </mat-list-item>
+        <button mat-flat-button (click)="deleteSubject(subject)">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">clear
+          </mat-icon>
+        </button>
+      </div>
+    </mat-nav-list>
+  </div>
+</mat-card>
+
+<ng-template #elseBlock>
+  <strong>No hay materias para agregar</strong>
+</ng-template>

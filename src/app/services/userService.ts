@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { REST_SERVER_URL } from './configurations';
 import { User } from '../domain/user';
-import { isString } from 'util';
 
 @Injectable({
   providedIn: 'root'
