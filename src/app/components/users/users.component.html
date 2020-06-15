@@ -1,5 +1,5 @@
 <div class="tableContainer">
-  <div class="formWarap">
+  <div class="formWarap" *ngIf="dataSource">
     <mat-form-field>
       <mat-label>Buscar usuarios</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Texto a buscar" />

@@ -1,3 +1,46 @@
-<p>
-  asignatures works!
-</p>
+<div class="tableContainer">
+  <div class="formWarap" *ngIf="dataSource">
+    <mat-form-field>
+      <mat-label>Buscar materias</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Texto a buscar" />
+    </mat-form-field>
+    <span>
+      <button mat-mini-fab color="primary" (click)="editSubject('')"> 
+        + 
+      </button>
+    </span>
+  </div>
+  <table *ngIf="dataSource; else elseBlock" mat-table [dataSource]="dataSource" class="mat-elevation-z8"
+    color="primary">
+    <!-- Position Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let subject">
+        {{ subject.name }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions" >
+      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let subject">
+
+        <button mat-icon-button [disabled]="!subject.active" (click)="editSubject(subject.id)">
+          <mat-icon matTooltip="Editar materia">create</mat-icon>
+        </button>
+
+        <button  mat-icon-button (click)="shouldDelete(subject.id)">
+          <!-- <mat-icon *ngIf="!subject.active" matTooltip="Reactivar materia">add</mat-icon> -->
+          <mat-icon *ngIf="subject.active" matTooltip="Eliminar materia">delete</mat-icon>
+        </button>
+
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </table>
+</div>
+
+<ng-template #elseBlock>
+  <mat-spinner></mat-spinner>
+</ng-template>

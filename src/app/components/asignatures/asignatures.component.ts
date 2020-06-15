@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-
+import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { YesNoModalComponent } from '../yesNoModal/yesNoModal.component';
+import { Subject } from 'src/app/domain/subject';
+import { SubjectsService } from 'src/app/services/subjects.service';
+import { NewAsignatureFormComponent } from './newAsignatureForm/newAsignatureForm.component';
 @Component({
   selector: 'app-asignatures',
   templateUrl: './asignatures.component.html',
@@ -7,9 +12,57 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AsignaturesComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog, private subjectService:SubjectsService) {
+  }
 
-  ngOnInit() {
+
+  ngOnInit(): void {
+    this.fetchUsers();
+  }
+
+  displayedColumns: string[] = ['name', 'actions'];
+  dataSource: MatTableDataSource<Subject>;
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  shouldDelete(id:string) {
+    const dialogRef = this.dialog.open(YesNoModalComponent, { })
+    dialogRef.afterClosed().subscribe((result) => {
+      if(result){
+        this.deleteSubject(id)
+        this.fetchUsers()
+      }
+    })
+  }
+
+  async deleteSubject(id:string){
+    try {
+      await this.subjectService.deleteSubject(id);
+      this.fetchUsers()
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  editSubject(id:String) {
+    const dialogRef = this.dialog.open(NewAsignatureFormComponent, {
+      data: id === "" ? "" : id
+    })
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) this.fetchUsers()
+    })
+  }
+
+  async fetchUsers() {
+    const response = await this.subjectService.getAllSubjects()
+    this.dataSource = new MatTableDataSource<Subject>(response);
+  }
+
+  getStatus(subject: Subject) {
+    return subject.active ? "activo" : "inactivo"
   }
 
 }

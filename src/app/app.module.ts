@@ -14,6 +14,8 @@ import { UserFormComponent } from './components/users/userForm/userForm.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { SubjectsComponent } from './components/users/subjects/subjects.component';
+import { AsignaturesComponent } from './components/asignatures/asignatures.component';
+import { NewAsignatureFormComponent } from './components/asignatures/newAsignatureForm/newAsignatureForm.component';
 
 @NgModule({
   declarations: [
@@ -23,11 +25,14 @@ import { SubjectsComponent } from './components/users/subjects/subjects.componen
     YesNoModalComponent,
     UserFormComponent,
     SubjectsComponent,
+    AsignaturesComponent,
+    NewAsignatureFormComponent,
   ],
 
   entryComponents: [
     YesNoModalComponent,
     UserFormComponent,
+    NewAsignatureFormComponent,
   ],
 
   imports: [

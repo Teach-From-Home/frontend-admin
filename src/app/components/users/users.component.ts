@@ -4,19 +4,8 @@ import { User } from 'src/app/domain/user';
 import { MatDialog } from '@angular/material/dialog';
 import { YesNoModalComponent } from '../yesNoModal/yesNoModal.component';
 import { UserService } from '../../services/userService';
-import { DataSource } from '@angular/cdk/table';
 import { UserFormComponent } from './userForm/userForm.component';
-import { isUndefined } from 'util';
 
-
-
-// const ELEMENT_DATA: User[] = [
-//   {id:"123", name: 'Javier',       <mat-cell *matCellDef="let element"> {{ element.lastname }} </mat-cell>
-// : 'Gomez', password:"asejre", dni: 12344567, email: 'javiemgz@gmail.com', active: true },
-//   {id:"123", name: 'Agustin', lastName: 'Tini', password:"asejre", dni: 12344567, email: 'agustini@gmail.com', active: true },
-//   {id:"123", name: 'Nicolas', lastName: 'Chiozza', password:"asejre", dni: 12344567, email: 'niko@gmail.com', active: false },
-//   {id:"123", name: 'Eugenio', lastName: 'Rossetto', password:"asejre", dni: 12344567, email: 'reuzal@gmail.com', active: true },
-// ];
 
 @Component({
   selector: 'app-users',
@@ -32,7 +21,6 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchUsers();
-    //this.dataSource =  new MatTableDataSource<User>(ELEMENT_DATA);
   }
 
   displayedColumns: string[] = ['name', 'lastname', 'dni', 'email', 'status', 'actions'];
@@ -54,7 +42,12 @@ export class UsersComponent implements OnInit {
   }
 
   async deleteUser(id:string){
-    await this.userService.deleteUser(id)
+    try {
+      await this.userService.deleteUser(id);
+      this.fetchUsers()
+    } catch (error) {
+      console.log(error);
+    }
   }
   editUser(id:String) {
     const dialogRef = this.dialog.open(UserFormComponent, {
