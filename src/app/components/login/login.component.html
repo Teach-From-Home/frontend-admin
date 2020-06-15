@@ -6,17 +6,20 @@
       <div class="logForm">
         <mat-form-field appearance="outline">
           <mat-label>DNI</mat-label>
-          <input matInput placeholder="11223344" autofocus formControlName="dni" [(ngModel)]="userCredentials.dni">
+          <input matInput inputmode="numeric" pattern="[0-9]*" digitOnly placeholder="11223344" autofocus
+            formControlName="dni" [(ngModel)]="userCredentials.dni">
           <mat-error *ngIf="hasError('dni','required')">Ingrese un <strong>Username</strong></mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Contraseña</mat-label>
-          <input matInput type="password" placeholder="*******" formControlName="password" [(ngModel)]="userCredentials.password">
+          <input matInput type="password" placeholder="*******" formControlName="password"
+            [(ngModel)]="userCredentials.password">
           <mat-error *ngIf="hasError('password','required')">Ingrese la <strong>Contraseña</strong> </mat-error>
         </mat-form-field>
       </div>
       <button class="logButton" mat-flat-button color="primary" (click)="authenticate()"
-        [disabled]="formHasData()">Ingresar</button>
+        [disabled]="formHasData()">Ingresar <mat-icon *ngIf="loading"><mat-spinner color="primary" diameter="20">
+        </mat-spinner></mat-icon></button>
     </form>
   </div>
 </main>

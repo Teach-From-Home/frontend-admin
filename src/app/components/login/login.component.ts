@@ -14,6 +14,7 @@ export class LoginComponent{
 
   public loginForm: FormGroup
   userCredentials:User
+  loading:boolean = false
 
   constructor(private router: Router,private sessionService: SessionService, private snackBar: MatSnackBar, private biulter: FormBuilder) {
     this.loginForm = this.biulter.group({
@@ -28,18 +29,18 @@ export class LoginComponent{
   }
 
   async authenticate() {
+    this.loading = true
     try{
       await this.sessionService.authenticate(this.userCredentials)
       this.router.navigate(['home'])
     }
     catch(e){
-      console.log (e)
-      this.error(e.error.error)
+      this.error(e.error.message)
     }
-
+    this.loading = false
   }
   formHasData(){
-    return this.loginForm.status == 'INVALID'
+    return this.loginForm.status == 'INVALID' || this.loading
   }
 
   error(errorType:string) {
