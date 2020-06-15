@@ -3,25 +3,25 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { isUndefined } from 'util';
-import { Subject } from 'src/app/domain/subject';
-import { SubjectsService } from 'src/app/services/subjects.service';
+import { Classroom } from 'src/app/domain/classroom';
+import { ClassroomService } from 'src/app/services/classroom.service';
+
 
 @Component({
-  selector: 'app-newAsignatureForm',
-  templateUrl: './newAsignatureForm.component.html',
-  styleUrls: ['./newAsignatureForm.component.css']
+  selector: 'app-classroomForm',
+  templateUrl: './classroomForm.component.html',
+  styleUrls: ['./classroomForm.component.css']
 })
-export class NewAsignatureFormComponent implements OnInit {
+export class ClassroomFormComponent implements OnInit {
 
   public dataForm: FormGroup
-  subject:Subject
+  classroom:Classroom
 
-  constructor(private snackBar: MatSnackBar, public dialogRef: MatDialogRef<NewAsignatureFormComponent>,
+  constructor(private snackBar: MatSnackBar, public dialogRef: MatDialogRef<ClassroomFormComponent>,
     private biulter: FormBuilder, @Optional() @Inject(MAT_DIALOG_DATA) private data: string,
-    private subjectService:SubjectsService) {
+    private classroomService:ClassroomService) {
 
     this.dataForm = this.biulter.group({
-      name: ['', Validators.required],
       description: ['', Validators.required],
     })
   }
@@ -29,9 +29,9 @@ export class NewAsignatureFormComponent implements OnInit {
   async ngOnInit() {
     this.dialogRef.disableClose = true;
     if (this.data === "")
-      this.subject = new Subject()
+      this.classroom = new Classroom()
     else
-      this.subject = await this.subjectService.getSubjectById(this.data)
+      this.classroom = await this.classroomService.getClassroomById(this.data)
   }
 
   public hasError = (controlName: string, errorName: string) => {
@@ -39,15 +39,15 @@ export class NewAsignatureFormComponent implements OnInit {
   }
 
   formHasData() {
-    return this.dataForm.status == 'INVALID'
+    return this.dataForm.status == 'INVALID' || isUndefined(this.classroom.subject)
   }
 
   saveChanges() {
     try {
-      if (isUndefined(this.subject.id))
-        this.subjectService.createSubject(this.subject)
+      if (isUndefined(this.classroom.id))
+        this.classroomService.createClassroom(this.classroom)
       else
-        this.subjectService.updateSubject(this.subject)
+        this.classroomService.updateClassroom(this.classroom)
     }
     catch{
       console.log("algo malio sal")

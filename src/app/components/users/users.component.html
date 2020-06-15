@@ -52,7 +52,7 @@
           <mat-icon matTooltip="Editar Alumno">create</mat-icon>
         </button>
 
-        <button  mat-icon-button (click)="shouldDelete(user.id)">
+        <button mat-icon-button (click)="shouldDelete(user.id)">
           <!-- <mat-icon *ngIf="!user.active" matTooltip="Reactivar usuario">add</mat-icon> -->
           <mat-icon *ngIf="user.active" matTooltip="Eliminar usuario">delete</mat-icon>
         </button>
@@ -64,7 +64,8 @@
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </table>
 </div>
-
-<ng-template #elseBlock>
-  <mat-spinner></mat-spinner>
-</ng-template>
+<div class="loading">
+  <ng-template #elseBlock>
+    <img src="../../../assets/book.gif" height="200rem" />
+  </ng-template>
+</div>

@@ -1,3 +1,60 @@
-<p>
-  classrooms works!
-</p>
+<div class="tableContainer">
+  <div class="formWarap" *ngIf="dataSource">
+    <mat-form-field>
+      <mat-label>Buscar classrooms</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Texto a buscar" />
+    </mat-form-field>
+    <span>
+      <button mat-mini-fab color="primary" (click)="editSubject('')"> 
+        + 
+      </button> 
+    </span>
+  </div>
+  <table *ngIf="dataSource; else elseBlock" mat-table [dataSource]="dataSource" class="mat-elevation-z8"
+    color="primary">
+    <!-- Position Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
+      <mat-cell *matCellDef="let classroom">
+        {{ classroom.description }}
+      </mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="subject">
+      <mat-header-cell *matHeaderCellDef> Materia </mat-header-cell>
+      <mat-cell *matCellDef="let classroom">
+        {{ classroom.subject.name }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions" >
+      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let classroom">
+
+        <button mat-icon-button [disabled]="!classroom.active" (click)="editSubject(classroom.id)">
+          <mat-icon matTooltip="Editar classroom">create</mat-icon>
+        </button>
+
+        <button  mat-icon-button [routerLink]="['/edit/classroom',classroom.id]">
+          <!-- <mat-icon *ngIf="!subject.active" matTooltip="Reactivar materia">add</mat-icon> -->
+          <mat-icon *ngIf="classroom.active" matTooltip="Editar integrantes del classroom">group</mat-icon>
+        </button>
+
+        <button  mat-icon-button (click)="shouldDelete(classroom.id)">
+          <!-- <mat-icon *ngIf="!subject.active" matTooltip="Reactivar materia">add</mat-icon> -->
+          <mat-icon *ngIf="classroom.active" matTooltip="Eliminar classroom">delete</mat-icon>
+        </button>
+
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </table>
+</div>
+
+<div class="loading">
+  <ng-template #elseBlock>
+    <img src="../../../assets/book.gif" height="200rem" />
+  </ng-template>
+</div>

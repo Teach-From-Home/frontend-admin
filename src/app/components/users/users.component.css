@@ -14,3 +14,7 @@ table{
 button{
     margin-left: 2rem;
 }
+
+img{
+    object-fit: contain;
+}

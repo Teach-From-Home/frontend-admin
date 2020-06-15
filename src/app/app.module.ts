@@ -19,6 +19,10 @@ import { NewAsignatureFormComponent } from './components/asignatures/newAsignatu
 import { SubjectsService } from './services/subjects.service';
 import { SessionService } from './services/session.service';
 import { LoginComponent } from './components/login/login.component';
+import { ClassroomsComponent } from './components/classrooms/classrooms.component';
+import { ClassroomFormComponent } from './components/classrooms/classroomForm/classroomForm.component';
+import { SingleSubjectSelectorComponent } from './components/classrooms/singleSubjectSelector/singleSubjectSelector.component';
+import { ClassroomUsersComponent } from './components/classroomUsers/classroomUsers.component';
 
 @NgModule({
   declarations: [
@@ -31,12 +35,17 @@ import { LoginComponent } from './components/login/login.component';
     AsignaturesComponent,
     NewAsignatureFormComponent,
     LoginComponent,
+    ClassroomsComponent,
+    ClassroomFormComponent,
+    SingleSubjectSelectorComponent,
+    ClassroomUsersComponent,
   ],
 
   entryComponents: [
     YesNoModalComponent,
     UserFormComponent,
     NewAsignatureFormComponent,
+    ClassroomFormComponent,
   ],
 
   imports: [

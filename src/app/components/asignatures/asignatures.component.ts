@@ -17,7 +17,7 @@ export class AsignaturesComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.fetchUsers();
+    this.fetchAsignatures();
   }
 
   displayedColumns: string[] = ['name', 'actions'];
@@ -33,7 +33,7 @@ export class AsignaturesComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if(result){
         this.deleteSubject(id)
-        this.fetchUsers()
+        this.fetchAsignatures()
       }
     })
   }
@@ -41,7 +41,7 @@ export class AsignaturesComponent implements OnInit {
   async deleteSubject(id:string){
     try {
       await this.subjectService.deleteSubject(id);
-      this.fetchUsers()
+      this.fetchAsignatures()
     } catch (error) {
       console.log(error);
     }
@@ -52,11 +52,11 @@ export class AsignaturesComponent implements OnInit {
       data: id === "" ? "" : id
     })
     dialogRef.afterClosed().subscribe(result => {
-      if(result) this.fetchUsers()
+      if(result) this.fetchAsignatures()
     })
   }
 
-  async fetchUsers() {
+  async fetchAsignatures() {
     const response = await this.subjectService.getAllSubjects()
     this.dataSource = new MatTableDataSource<Subject>(response);
   }

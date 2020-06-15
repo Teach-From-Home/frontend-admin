@@ -1,25 +1,22 @@
-<div *ngIf="subject; else elseBlock">
+<div *ngIf="classroom; else elseBlock">
   <mat-dialog-content>
     <h2>Editar materia</h2>
     <form [formGroup]="dataForm">
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Nombre</mat-label>
-        <input matInput [(ngModel)]="subject.name" formControlName="name" placeholder="Ej. Base de datos">
-        <mat-error *ngIf="hasError('name','required')">
-          Ingrese un <strong>nombre</strong>
-        </mat-error>
-      </mat-form-field>
+      <app-singleSubjectSelector [classroom]="classroom"> </app-singleSubjectSelector>
+
       <br>
+
       <mat-form-field class="example-full-width">
         <mat-label>Descripción</mat-label>
-        <textarea matInput type="text" placeholder="Texto libre" formControlName="description" [(ngModel)]="subject.description" maxlength="255"></textarea>
-        <mat-hint align="end"> {{subject.description.length}}/255</mat-hint>
+        <textarea matInput type="text" placeholder="Texto libre" formControlName="description"
+          [(ngModel)]="classroom.description" maxlength="255"></textarea>
+        <mat-hint align="end"> {{classroom.description.length}}/255</mat-hint>
         <mat-error *ngIf="hasError('description','required')">
           Ingrese una <strong>descripcion</strong>
         </mat-error>
       </mat-form-field>
-      
+
     </form>
   </mat-dialog-content>
 
