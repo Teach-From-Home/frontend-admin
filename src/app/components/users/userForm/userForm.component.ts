@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from 'src/app/domain/user';
-import { UserService } from 'src/app/services/userService';
+import { UserService } from 'src/app/services/user.service';
 import { isUndefined } from 'util';
 
 @Component({

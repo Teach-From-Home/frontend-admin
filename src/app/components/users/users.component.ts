@@ -3,7 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { User } from 'src/app/domain/user';
 import { MatDialog } from '@angular/material/dialog';
 import { YesNoModalComponent } from '../yesNoModal/yesNoModal.component';
-import { UserService } from '../../services/userService';
+import { UserService } from '../../services/user.service';
 import { UserFormComponent } from './userForm/userForm.component';
 
 
