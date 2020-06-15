@@ -3,14 +3,12 @@
     flex-direction: column;
     width: 100%;
     margin: 1rem;
-    align-items: center;
 }
 table{
     width: 55%;
     margin-top: -0.8rem;
 }
 .formWarap{
-    margin-left: -78%;
     margin-bottom: 0.8rem;
 }
 button{

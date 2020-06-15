@@ -25,7 +25,7 @@
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <mat-label>Dni</mat-label>
-        <input matInput [(ngModel)]="user.dni" formControlName="dni" placeholder="Ej. 44658872">
+        <input matInput inputmode="numeric" pattern="[0-9]*" digitOnly [(ngModel)]="user.dni" formControlName="dni" placeholder="Ej. 44658872">
         <mat-error *ngIf="hasError('dni','required')">
           Ingrese un <strong>DNI</strong>
         </mat-error>

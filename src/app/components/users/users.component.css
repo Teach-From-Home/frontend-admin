@@ -1,16 +1,14 @@
 .tableContainer{
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 90%;
     margin: 1rem;
-    align-items: center;
 }
 table{
     width: 95%;
     margin-top: -0.8rem;
 }
 .formWarap{
-    margin-left: -78%;
     margin-bottom: 0.8rem;
 }
 button{
