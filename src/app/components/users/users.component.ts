@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { User } from 'src/app/domain/user';
 import { MatDialog } from '@angular/material/dialog';
@@ -17,31 +17,29 @@ export class UsersComponent implements OnInit {
 
   constructor(public dialog: MatDialog, private userService: UserService) {
   }
-
+  displayedColumns: string[] = ['name', 'lastname', 'dni', 'email', 'status', 'actions'];
+  dataSource: MatTableDataSource<User>;
 
   ngOnInit(): void {
     this.fetchUsers();
   }
-
-  displayedColumns: string[] = ['name', 'lastname', 'dni', 'email', 'status', 'actions'];
-  dataSource: MatTableDataSource<User>;
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  shouldDelete(id:string) {
-    const dialogRef = this.dialog.open(YesNoModalComponent, { })
+  shouldDelete(id: string) {
+    const dialogRef = this.dialog.open(YesNoModalComponent, {})
     dialogRef.afterClosed().subscribe((result) => {
-      if(result){
+      if (result) {
         this.deleteUser(id)
         this.fetchUsers()
       }
     })
   }
 
-  async deleteUser(id:string){
+  async deleteUser(id: string) {
     try {
       await this.userService.deleteUser(id);
       this.fetchUsers()
@@ -49,12 +47,12 @@ export class UsersComponent implements OnInit {
       console.log(error);
     }
   }
-  editUser(id:String) {
+  editUser(id: String) {
     const dialogRef = this.dialog.open(UserFormComponent, {
       data: id === "" ? "" : id
     })
     dialogRef.afterClosed().subscribe(result => {
-      if(result) this.fetchUsers()
+      if (result) this.fetchUsers()
     })
   }
 

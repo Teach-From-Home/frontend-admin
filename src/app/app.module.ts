@@ -23,6 +23,8 @@ import { ClassroomsComponent } from './components/classrooms/classrooms.componen
 import { ClassroomFormComponent } from './components/classrooms/classroomForm/classroomForm.component';
 import { SingleSubjectSelectorComponent } from './components/classrooms/singleSubjectSelector/singleSubjectSelector.component';
 import { ClassroomUsersComponent } from './components/classroomUsers/classroomUsers.component';
+import { EditListOfUsersComponent } from './components/editListOfUsers/editListOfUsers.component';
+import { EditUsersComponent } from './components/classroomUsers/editUsers/editUsers.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { ClassroomUsersComponent } from './components/classroomUsers/classroomUs
     ClassroomFormComponent,
     SingleSubjectSelectorComponent,
     ClassroomUsersComponent,
+    EditListOfUsersComponent,
+    EditUsersComponent
   ],
 
   entryComponents: [
@@ -46,6 +50,7 @@ import { ClassroomUsersComponent } from './components/classroomUsers/classroomUs
     UserFormComponent,
     NewAsignatureFormComponent,
     ClassroomFormComponent,
+    EditUsersComponent,
   ],
 
   imports: [
