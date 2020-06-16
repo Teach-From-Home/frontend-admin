@@ -16,18 +16,29 @@ import { EditUsersComponent } from './editUsers/editUsers.component';
 export class ClassroomUsersComponent implements OnInit {
 
   classroom: Classroom
-  constructor(public dialog: MatDialog,private userService: UserService, private classroomService: ClassroomService, private snackBar: MatSnackBar) { }
+  constructor(public dialog: MatDialog, private userService: UserService, private classroomService: ClassroomService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.fetchUsers(false)
   }
 
-  async fetchUsers(event) {
-    setTimeout(async () => {
+  async fetchUsers(showSnack: boolean) {
+    this.classroom = null
+    try {
       this.classroom = await this.classroomService.getClassroomById("9")
-      if (event)
-        this.error("Modificacion realizada con exito!!")
-    }, 600)
+    }
+    catch (e) {
+      this.error(e)
+    }
+    if (showSnack)
+      this.error("Modificacion realizada con exito!!")
+    console.log(this.getTeachers())
+  }
+
+  deleteUser(event: string) {
+    this.classroomService.deleteUser(this.classroom.id, event)
+      .then( () => this.fetchUsers(true) )
+    
   }
 
   getStudents() {
@@ -35,9 +46,9 @@ export class ClassroomUsersComponent implements OnInit {
     return students;
   }
 
-  editUsers(types:string){
+  editUsers(types: string) {
     const dialogRef = this.dialog.open(EditUsersComponent, {
-      data:{ id: this.classroom.id, type: types }
+      data: { id: this.classroom.id, type: types }
     })
     dialogRef.afterClosed().subscribe(() => {
       this.fetchUsers(false)

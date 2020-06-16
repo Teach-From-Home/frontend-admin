@@ -19,7 +19,7 @@ export class EditListOfUsersComponent implements OnInit {
   @Input() id: string
   @Input() deleteMode: boolean = true
   @Input() users: User[]
-  size:number
+  size: number
   @Output() add = new EventEmitter<string>();
   @Output() delete = new EventEmitter<string>();
 
@@ -32,11 +32,15 @@ export class EditListOfUsersComponent implements OnInit {
   }
 
   async deleteUser(user: User) {
-      this.emitAdd(user.id)
+    this.emitAdd(user.id)
   }
 
   async addUser(user: User) {
     this.emitDelte(user.id)
+    this.dataSource = null
+    setTimeout(() => {
+      this.fetchData()
+    }, 500);
   }
 
   fetchData() {
@@ -63,15 +67,15 @@ export class EditListOfUsersComponent implements OnInit {
     this.dataSource = new MatTableDataSource<User>(response);
   }
 
-  emitAdd(id:string) {
-    this.delete.emit(true);
+  emitAdd(id: string) {
+    this.delete.emit(id);
   }
 
-  emitDelte(id:string) {
-    this.add.emit(true);
+  emitDelte(id: string) {
+    this.add.emit(id);
   }
 
-  hasData(){
+  hasData() {
     return this.size >= 1
   }
 }

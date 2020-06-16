@@ -7,7 +7,7 @@
         +
       </button>
     </div>
-    <app-editListOfUsers (click)="fetchUsers($event)" [users]= "getTeachers()" [type]="'TEACHER'" [id]="classroom.id" ></app-editListOfUsers>
+    <app-editListOfUsers (delete)="deleteUser($event)" [users]= "getTeachers()" [type]="'TEACHER'" [id]="classroom.id" ></app-editListOfUsers>
   </mat-card>
 
   <mat-card>
@@ -18,7 +18,7 @@
         +
       </button>
     </div>
-    <app-editListOfUsers (click)="fetchUsers($event)" [type]="'STUDENT'" [users]= "getStudents()" [id]="classroom.id" ></app-editListOfUsers>
+    <app-editListOfUsers (delete)="deleteUser($event)" [type]="'STUDENT'" [users]= "getStudents()" [id]="classroom.id" ></app-editListOfUsers>
   </mat-card>
 </div>
 
