@@ -40,7 +40,7 @@ export class EditListOfUsersComponent implements OnInit {
     this.dataSource = null
     setTimeout(() => {
       this.fetchData()
-    }, 500);
+    }, 1000);
   }
 
   fetchData() {

@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { EditListOfUsersComponent } from '../editListOfUsers/editListOfUsers.component';
 import { EditUsersComponent } from './editUsers/editUsers.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-classroomUsers',
@@ -16,19 +17,25 @@ import { EditUsersComponent } from './editUsers/editUsers.component';
 export class ClassroomUsersComponent implements OnInit {
 
   classroom: Classroom
-  constructor(public dialog: MatDialog, private userService: UserService, private classroomService: ClassroomService, private snackBar: MatSnackBar) { }
+  routeId:string
+
+  constructor(public dialog: MatDialog, private userService: UserService, 
+    private classroomService: ClassroomService, private snackBar: MatSnackBar,private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.fetchUsers(false)
+    this.route.params.subscribe(routeParams => {
+      this.routeId = routeParams.id   
+      this.fetchUsers(false)
+    })
   }
 
   async fetchUsers(showSnack: boolean) {
     this.classroom = null
     try {
-      this.classroom = await this.classroomService.getClassroomById("9")
+      this.classroom = await this.classroomService.getClassroomById(this.routeId)
     }
     catch (e) {
-      this.error(e)
+      this.error(e.message)
     }
     if (showSnack)
       this.error("Modificacion realizada con exito!!")
