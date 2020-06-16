@@ -13,7 +13,7 @@ import { ClassroomFormComponent } from './classroomForm/classroomForm.component'
 })
 export class ClassroomsComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, private classromService:ClassroomService) {
+  constructor(public dialog: MatDialog, private classromService: ClassroomService) {
   }
 
 
@@ -29,17 +29,17 @@ export class ClassroomsComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  shouldDelete(id:string) {
-    const dialogRef = this.dialog.open(YesNoModalComponent, { })
+  shouldDelete(id: string) {
+    const dialogRef = this.dialog.open(YesNoModalComponent, {})
     dialogRef.afterClosed().subscribe((result) => {
-      if(result){
+      if (result) {
         this.deleteSubject(id)
         this.fetchAsignatures()
       }
     })
   }
 
-  async deleteSubject(id:string){
+  async deleteSubject(id: string) {
     try {
       await this.classromService.deleteClassroom(id);
       this.fetchAsignatures()
@@ -48,12 +48,17 @@ export class ClassroomsComponent implements OnInit {
     }
   }
 
-  editSubject(id:String) {
+  editSubject(id: String) {
     const dialogRef = this.dialog.open(ClassroomFormComponent, {
       data: id === "" ? "" : id
     })
     dialogRef.afterClosed().subscribe(result => {
-      if(result) this.fetchAsignatures()
+      if (result) {
+        this.dataSource = null
+        setTimeout(() => {
+          this.fetchAsignatures()
+        }, 600)
+      }
     })
     return
   }
