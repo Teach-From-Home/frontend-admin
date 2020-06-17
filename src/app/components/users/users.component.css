@@ -4,9 +4,11 @@
     width: 90%;
     margin: 1rem;
 }
+
 table{
     width: 95%;
     margin-top: -0.8rem;
+    
 }
 .formWarap{
     margin-bottom: 0.8rem;
@@ -17,4 +19,8 @@ button{
 
 img{
     object-fit: contain;
+}
+
+.overflowA{
+    overflow-x:auto;
 }

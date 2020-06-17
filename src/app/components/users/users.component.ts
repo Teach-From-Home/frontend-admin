@@ -17,7 +17,7 @@ export class UsersComponent implements OnInit {
 
   constructor(public dialog: MatDialog, private userService: UserService) {
   }
-  displayedColumns: string[] = ['name', 'lastname', 'dni', 'email', 'status', 'actions'];
+  displayedColumns: string[] = ['name', 'lastname', 'dni', 'email', 'status', 'edit', 'delete'];
   dataSource: MatTableDataSource<User>;
 
   ngOnInit(): void {
