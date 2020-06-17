@@ -12,9 +12,25 @@ table{
     margin-bottom: 0.8rem;
 }
 button{
-    margin-left: 2rem;
+    margin-left: 0rem;
 }
+ 
+ .paddingColumnWithHugeText{
+     min-height:auto; 
+     margin-left: 10px;
+     margin-right: 10px;
+     padding: 0 2px 0 0;
+ }
 
 img{
     object-fit: contain;
+}
+
+.overflowA{
+    overflow-x:auto;
+}
+
+.marginOnBothSides{
+    margin-left: 3rem;
+    margin-right: 3rem;
 }

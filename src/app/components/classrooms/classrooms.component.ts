@@ -21,7 +21,7 @@ export class ClassroomsComponent implements OnInit {
     this.fetchAsignatures();
   }
 
-  displayedColumns: string[] = ['subject', 'name', 'actions'];
+  displayedColumns: string[] = ['subject', 'name', 'edit Classroom', 'edit Users', 'Delete'];
   dataSource: MatTableDataSource<Subject>;
 
   applyFilter(event: Event) {

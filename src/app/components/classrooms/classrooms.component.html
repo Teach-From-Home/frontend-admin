@@ -5,52 +5,79 @@
       <input matInput (keyup)="applyFilter($event)" placeholder="Texto a buscar" />
     </mat-form-field>
     <span>
-      <button mat-mini-fab color="primary" (click)="editSubject('')"> 
-        + 
-      </button> 
+      <button mat-mini-fab color="primary" (click)="editSubject('')">
+        +
+      </button>
     </span>
   </div>
-  <table *ngIf="dataSource; else elseBlock" mat-table [dataSource]="dataSource" class="mat-elevation-z8"
-    color="primary">
-    <!-- Position Column -->
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
-      <mat-cell *matCellDef="let classroom">
-        {{ classroom.description }}
-      </mat-cell>
-    </ng-container>
-    
-    <ng-container matColumnDef="subject">
-      <mat-header-cell *matHeaderCellDef> Materia </mat-header-cell>
-      <mat-cell *matCellDef="let classroom">
-        {{ classroom.subject.name }}
-      </mat-cell>
-    </ng-container>
+  <div class="overflowA">
+    <table *ngIf="dataSource; else elseBlock" mat-table [dataSource]="dataSource" class="mat-elevation-z8"
+      color="primary">
+      <!-- Position Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef  class="paddingMail"> Descripcion  </mat-header-cell>
+        <mat-cell *matCellDef="let classroom" class="paddingMail">
+          {{ classroom.description }}
+        </mat-cell>
+      </ng-container>
 
-    <ng-container matColumnDef="actions" >
-      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
-      <mat-cell *matCellDef="let classroom">
+      <ng-container matColumnDef="subject">
+        <mat-header-cell *matHeaderCellDef class="paddingColumnWithHugeText"> Materia </mat-header-cell>
+        <mat-cell *matCellDef="let classroom" class="paddingColumnWithHugeText">
+          {{ classroom.subject.name }}
+        </mat-cell>
+      </ng-container>
 
-        <button mat-icon-button [disabled]="!classroom.active" (click)="editSubject(classroom.id)">
-          <mat-icon matTooltip="Editar classroom">create</mat-icon>
-        </button>
+      <ng-container matColumnDef="edit Classroom">
+        <mat-header-cell *matHeaderCellDef>  Editar </mat-header-cell>
+        <mat-cell *matCellDef="let classroom">
 
-        <button  mat-icon-button [routerLink]="['/edit/classroom',classroom.id]">
-          <!-- <mat-icon *ngIf="!subject.active" matTooltip="Reactivar materia">add</mat-icon> -->
-          <mat-icon *ngIf="classroom.active" matTooltip="Editar integrantes del classroom">group</mat-icon>
-        </button>
+          <button mat-icon-button [disabled]="!classroom.active" (click)="editSubject(classroom.id)">
+            <mat-icon matTooltip="Editar classroom">create</mat-icon>
+          </button>
 
-        <button  mat-icon-button (click)="shouldDelete(classroom.id)">
-          <!-- <mat-icon *ngIf="!subject.active" matTooltip="Reactivar materia">add</mat-icon> -->
-          <mat-icon *ngIf="classroom.active " matTooltip="Eliminar classroom">delete</mat-icon>
-        </button>
 
-      </mat-cell>
-    </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-  </table>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="edit Users">
+        <mat-header-cell *matHeaderCellDef> Integrantes </mat-header-cell>
+        <mat-cell *matCellDef="let classroom">
+
+          <button mat-icon-button [routerLink]="['/edit/classroom',classroom.id]">
+            <!-- <mat-icon *ngIf="!subject.active" matTooltip="Reactivar materia">add</mat-icon> -->
+            <mat-icon *ngIf="classroom.active" matTooltip="Editar integrantes del classroom">group</mat-icon>
+          </button>
+
+
+
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Delete">
+        <mat-header-cell *matHeaderCellDef> Eliminar </mat-header-cell>
+        <mat-cell *matCellDef="let classroom">
+
+          <button mat-icon-button (click)="shouldDelete(classroom.id)">
+            <!-- <mat-icon *ngIf="!subject.active" matTooltip="Reactivar materia">add</mat-icon> -->
+            <mat-icon *ngIf="classroom.active " matTooltip="Eliminar classroom">delete</mat-icon>
+          </button>
+
+
+
+        </mat-cell>
+      </ng-container>
+
+
+
+
+
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </table>
+  </div>
 </div>
 
 <div class="loading">
