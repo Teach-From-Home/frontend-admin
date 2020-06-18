@@ -21,6 +21,10 @@ export class ClassroomService {
     return Classroom.fromJson(user)
   }
 
+  async getClassroomUsers(id: string) {
+    const users = await this.httpCLient.get<User[]>(`${REST_SERVER_URL}/classroom/${id}/users`).toPromise()
+    return users.map((friend) => User.fromJson(friend))
+  }
   async updateClassroom(classroom: Classroom) {
     return await this.httpCLient.put(`${REST_SERVER_URL}/classroom/${classroom.id}`, { ...classroom }).toPromise()
   }

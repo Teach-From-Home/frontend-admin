@@ -33,6 +33,7 @@ export class ClassroomUsersComponent implements OnInit {
     this.classroom = null
     try {
       this.classroom = await this.classroomService.getClassroomById(this.routeId)
+      this.classroom.users = await this.classroomService.getClassroomUsers(this.routeId)
     }
     catch (e) {
       this.error(e.message)
