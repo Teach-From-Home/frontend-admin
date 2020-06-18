@@ -1,4 +1,4 @@
-<div class="tableContainer" *ngIf="dataSource; else elseBlock">
+<div class="tableContainer" *ngIf="dataSource; else elseBlock" class="overflowTable">
   <table *ngIf="hasData(); else elseBlock2" mat-table [dataSource]="dataSource" class="mat-elevation-z8"
     color="primary">
     <!-- Position Column -->
@@ -11,8 +11,8 @@
 
     <!-- Weight Column -->
     <ng-container matColumnDef="dni">
-      <mat-header-cell *matHeaderCellDef> DNI </mat-header-cell>
-      <mat-cell *matCellDef="let user"> {{ user.dni }} </mat-cell>
+      <mat-header-cell *matHeaderCellDef class="paddingColumnWithHugeText"> DNI </mat-header-cell>
+      <mat-cell *matCellDef="let user" class="paddingColumnWithHugeText"> {{ user.dni }} </mat-cell>
     </ng-container>
 
     <!-- Symbol Column -->

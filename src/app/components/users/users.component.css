@@ -1,14 +1,14 @@
 .tableContainer{
     display: flex;
     flex-direction: column;
-    width: 90%;
+    width: 100%;
     margin: 1rem;
 }
 
 table {
    width: 100%;
 }
-  
+
 .mat-row {
    height: auto;
 }
@@ -26,4 +26,8 @@ img{
 
 .overflowA{
     overflow-x:auto;
+}
+
+.newButtonPlus{
+    margin-left: 2rem;
 }

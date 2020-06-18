@@ -24,7 +24,7 @@ export class EditListOfUsersComponent implements OnInit {
   @Output() delete = new EventEmitter<string>();
 
 
-  displayedColumns: string[] = ['name', 'dni', 'email', 'actions'];
+  displayedColumns: string[] = ['name', 'dni', 'actions'];
   dataSource: MatTableDataSource<User>;
 
   ngOnInit(): void {
