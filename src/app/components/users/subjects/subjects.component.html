@@ -23,13 +23,14 @@
     </div>
     <mat-nav-list class="listFriends">
       <div *ngFor="let subject of user.subjects" class="buttonRemove">
-        <mat-list-item>
+        <mat-list-item class="autoMargin">
           {{subject.name}}
+          
+          <button mat-flat-button (click)="deleteSubject(subject)">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">clear
+            </mat-icon>
+          </button>
         </mat-list-item>
-        <button mat-flat-button (click)="deleteSubject(subject)">
-          <mat-icon aria-hidden="false" aria-label="Example home icon">clear
-          </mat-icon>
-        </button>
       </div>
     </mat-nav-list>
   </div>

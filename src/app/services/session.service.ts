@@ -30,7 +30,7 @@ export class SessionService {
   }
 
   isAuthenticated():boolean{
-    return !isUndefined(this.getUserCookieId())
+    return true //!isUndefined(this.getUserCookieId())
   }
 
   logout(){

@@ -1,17 +1,21 @@
-.mainFriends{
-    margin: 1rem;
-    display: flex;
-}
-
 .containerFriends{
-    width: 36rem;
-    text-align: center;
+    text-align: auto;
     margin: auto;
 }
 
 
-.matInputFriend, .listFriends{
+.matInputFriend{
     width: 100%;
+}
+
+.autoMargin{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.listFriends{
+    flex-direction: column;
+    display: flex;
 }
 
 mat-cmat-card-footer{

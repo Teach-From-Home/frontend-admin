@@ -20,7 +20,7 @@ export class AsignaturesComponent implements OnInit {
     this.fetchAsignatures();
   }
 
-  displayedColumns: string[] = ['name', 'actions'];
+  displayedColumns: string[] = ['name', 'edit', 'delete'];
   dataSource: MatTableDataSource<Subject>;
 
   applyFilter(event: Event) {

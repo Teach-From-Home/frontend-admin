@@ -5,7 +5,7 @@
       <input matInput (keyup)="applyFilter($event)" placeholder="Texto a buscar" />
     </mat-form-field>
     <span>
-      <button mat-mini-fab color="primary" (click)="editSubject('')">
+      <button mat-mini-fab color="primary" (click)="editSubject('')" class="newButtonPlus">
         +
       </button>
     </span>
@@ -15,8 +15,8 @@
       color="primary">
       <!-- Position Column -->
       <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef  class="paddingMail"> Descripcion  </mat-header-cell>
-        <mat-cell *matCellDef="let classroom" class="paddingMail">
+        <mat-header-cell *matHeaderCellDef  class="paddingTitleColumn"> Descripcion  </mat-header-cell>
+        <mat-cell *matCellDef="let classroom" class="paddingColumnWithHugeText">
           {{ classroom.description }}
         </mat-cell>
       </ng-container>
@@ -42,15 +42,13 @@
       </ng-container>
 
       <ng-container matColumnDef="edit Users">
-        <mat-header-cell *matHeaderCellDef> Integrantes </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef class="paddingTitleColumn"> Integrantes </mat-header-cell>
         <mat-cell *matCellDef="let classroom">
 
           <button mat-icon-button [routerLink]="['/edit/classroom',classroom.id]">
             <!-- <mat-icon *ngIf="!subject.active" matTooltip="Reactivar materia">add</mat-icon> -->
             <mat-icon *ngIf="classroom.active" matTooltip="Editar integrantes del classroom">group</mat-icon>
           </button>
-
-
 
         </mat-cell>
       </ng-container>
