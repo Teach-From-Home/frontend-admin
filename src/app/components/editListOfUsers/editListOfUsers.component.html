@@ -1,4 +1,8 @@
 <div class="tableContainer" *ngIf="dataSource; else elseBlock" class="overflowTable">
+  <mat-form-field  *ngIf="hasData()">
+    <mat-label>Buscar usuarios</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Texto a buscar" />
+  </mat-form-field>
   <table *ngIf="hasData(); else elseBlock2" mat-table [dataSource]="dataSource" class="mat-elevation-z8"
     color="primary">
     <!-- Position Column -->

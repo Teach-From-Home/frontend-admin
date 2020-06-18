@@ -31,6 +31,11 @@ export class EditListOfUsersComponent implements OnInit {
     this.fetchData()
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
   async deleteUser(user: User) {
     this.emitAdd(user.id)
   }

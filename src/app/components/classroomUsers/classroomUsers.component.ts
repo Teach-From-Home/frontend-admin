@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/domain/user';
-import { UserService } from 'src/app/services/user.service';
-import { ClassroomService } from 'src/app/services/classroom.service';
-import { Classroom } from 'src/app/domain/classroom';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { EditListOfUsersComponent } from '../editListOfUsers/editListOfUsers.component';
-import { EditUsersComponent } from './editUsers/editUsers.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
+import { User } from 'src/app/domain/user';
+import { ClassroomService } from 'src/app/services/classroom.service';
+import { UserService } from 'src/app/services/user.service';
+import { EditUsersComponent } from './editUsers/editUsers.component';
 
 @Component({
   selector: 'app-classroomUsers',
@@ -16,8 +14,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ClassroomUsersComponent implements OnInit {
 
-  classroom: Classroom
   routeId:string
+  users:User[]
 
   constructor(public dialog: MatDialog, private userService: UserService, 
     private classroomService: ClassroomService, private snackBar: MatSnackBar,private route: ActivatedRoute) { }
@@ -30,33 +28,31 @@ export class ClassroomUsersComponent implements OnInit {
   }
 
   async fetchUsers(showSnack: boolean) {
-    this.classroom = null
+    this.users = null
     try {
-      this.classroom = await this.classroomService.getClassroomById(this.routeId)
-      this.classroom.users = await this.classroomService.getClassroomUsers(this.routeId)
+      this.users = await this.classroomService.getClassroomUsers(this.routeId)
     }
     catch (e) {
       this.error(e.message)
     }
     if (showSnack)
       this.error("Modificacion realizada con exito!!")
-    console.log(this.getTeachers())
   }
 
   deleteUser(event: string) {
-    this.classroomService.deleteUser(this.classroom.id, event)
+    this.classroomService.deleteUser(this.routeId, event)
       .then( () => this.fetchUsers(true) )
     
   }
 
   getStudents() {
-    const students = this.classroom.users.filter((user) => { return (user.role == "STUDENT") })
+    const students = this.users.filter((user) => { return (user.role == "STUDENT") })
     return students;
   }
 
   editUsers(types: string) {
     const dialogRef = this.dialog.open(EditUsersComponent, {
-      data: { id: this.classroom.id, type: types }
+      data: { id: this.routeId, type: types }
     })
     dialogRef.afterClosed().subscribe(() => {
       this.fetchUsers(false)
@@ -64,7 +60,7 @@ export class ClassroomUsersComponent implements OnInit {
   }
 
   getTeachers() {
-    const teachers = this.classroom.users.filter((user) => { return (user.role == "TEACHER") })
+    const teachers = this.users.filter((user) => { return (user.role == "TEACHER") })
     return teachers;
   }
 

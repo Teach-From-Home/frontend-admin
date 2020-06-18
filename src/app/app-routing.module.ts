@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'asignatures', component: AsignaturesComponent, canActivate: [AuthGuard] },
   { path: 'classrooms', component: ClassroomsComponent, canActivate: [AuthGuard]},
   { path: 'edit/classroom/:id', component: ClassroomUsersComponent, canActivate: [AuthGuard]},
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent},
   { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
 

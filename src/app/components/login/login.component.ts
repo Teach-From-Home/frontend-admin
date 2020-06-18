@@ -10,7 +10,7 @@ import { User } from 'src/app/domain/user'
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent{
+export class LoginComponent implements OnInit{
 
   public loginForm: FormGroup
   userCredentials:User
@@ -22,6 +22,10 @@ export class LoginComponent{
       password: ['', Validators.required]
     })
     this.userCredentials = new User
+  }
+  ngOnInit(): void {
+    if(this.sessionService.isAuthenticated)
+      this.router.navigate(['/home'])
   }
 
   public hasError = (controlName: string, errorName: string) => {
