@@ -1,3 +1,4 @@
+import { registerLocaleData } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -26,6 +27,9 @@ import { ClassroomUsersComponent } from './components/classroomUsers/classroomUs
 import { EditListOfUsersComponent } from './components/editListOfUsers/editListOfUsers.component';
 import { EditUsersComponent } from './components/classroomUsers/editUsers/editUsers.component';
 
+import localeEs from '@angular/common/locales/es'
+
+registerLocaleData(localeEs)
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +67,11 @@ import { EditUsersComponent } from './components/classroomUsers/editUsers/editUs
     MatNativeDateModule,
     ReactiveFormsModule,
   ],
-  providers: [UserService, SubjectsService,SessionService],
+  providers: [
+    UserService, 
+    SubjectsService,
+    SessionService,
+  ],
   bootstrap: [AppComponent],
   
 })

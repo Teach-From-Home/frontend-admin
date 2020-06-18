@@ -10,31 +10,27 @@ import { isUndefined } from 'util';
 })
 export class SessionService {
 
-  constructor(private http: HttpClient, private userService:UserService) {
+  constructor(private http: HttpClient, private userService:UserService,) {
   }
 
   async authenticate(credentials: User) {
+    localStorage.clear()
     const userLogged = await this.http.post<User>(REST_SERVER_URL + '/login', credentials).toPromise()
-    localStorage.clear
     localStorage.setItem("session",JSON.stringify(userLogged))
   }
 
-  // async getUserLogged():Promise<User>{
-  //   const userFetched = await this.userService.getUserById(this.getUserCookieId())
-  //   return User.fromJson(userFetched)
-  // }
 
-  getUserCookieId():string{
+  getCookie():string{
     const user = JSON.parse(localStorage.getItem("session"))
-    return user.id
+    return (user)
   }
 
   isAuthenticated():boolean{
-    return true //!isUndefined(this.getUserCookieId())
+    return !isUndefined(this.getCookie)
   }
 
   logout(){
-    localStorage.setItem("session","{}")
+    localStorage.clear()
   }
 
 }
