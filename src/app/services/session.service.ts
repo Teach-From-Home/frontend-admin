@@ -14,7 +14,7 @@ export class SessionService {
   }
 
   async authenticate(credentials: User) {
-    const userLogged = await this.http.post<User>(REST_SERVER_URL + '/login', credentials).toPromise()
+    const userLogged = await this.http.post<User>(REST_SERVER_URL + '/login?AppType=admin', credentials).toPromise()
     localStorage.setItem("session",JSON.stringify(userLogged))
   }
 
