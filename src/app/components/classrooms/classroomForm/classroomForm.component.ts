@@ -22,7 +22,7 @@ export class ClassroomFormComponent implements OnInit {
     private classroomService:ClassroomService) {
 
     this.dataForm = this.biulter.group({
-      description: ['', Validators.required],
+      name: ['', Validators.required],
     })
   }
 
