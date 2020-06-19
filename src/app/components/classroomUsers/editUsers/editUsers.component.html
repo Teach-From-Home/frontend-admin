@@ -1,0 +1,6 @@
+<mat-card class="widthCard">
+  <div class="header">
+    <h2>Agregar {{ getTitle() }}</h2>
+  </div>
+  <app-editListOfUsers (add)="addUser($event)" [type]="data.type" [id]="data.id" [deleteMode]="false" ></app-editListOfUsers>
+</mat-card>

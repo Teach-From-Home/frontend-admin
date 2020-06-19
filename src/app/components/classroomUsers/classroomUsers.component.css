@@ -1,0 +1,30 @@
+.tableContainer{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 1rem;
+}
+mat-card{
+    margin-bottom: 3rem;
+}
+button{
+    margin-left: 2rem;
+}
+
+.spacer{
+    flex: 1 1 auto;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+}
+
+img{
+    object-fit: contain;
+}
+
+::ng-deep mat-card{
+    border-radius: 15px !important;
+    border: 1px solid #cacaca;
+}

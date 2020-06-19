@@ -1,3 +1,4 @@
+import { registerLocaleData } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -8,13 +9,27 @@ import { LandingComponent } from './components/landing/landing.component';
 import { MaterialModule } from './material.module';
 import { UsersComponent } from './components/users/users.component';
 import { YesNoModalComponent } from './components/yesNoModal/yesNoModal.component';
-import { UserService } from './services/userService';
+import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { UserFormComponent } from './components/users/userForm/userForm.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { SubjectsComponent } from './components/users/subjects/subjects.component';
+import { AsignaturesComponent } from './components/asignatures/asignatures.component';
+import { NewAsignatureFormComponent } from './components/asignatures/newAsignatureForm/newAsignatureForm.component';
+import { SubjectsService } from './services/subjects.service';
+import { SessionService } from './services/session.service';
+import { LoginComponent } from './components/login/login.component';
+import { ClassroomsComponent } from './components/classrooms/classrooms.component';
+import { ClassroomFormComponent } from './components/classrooms/classroomForm/classroomForm.component';
+import { SingleSubjectSelectorComponent } from './components/classrooms/singleSubjectSelector/singleSubjectSelector.component';
+import { ClassroomUsersComponent } from './components/classroomUsers/classroomUsers.component';
+import { EditListOfUsersComponent } from './components/editListOfUsers/editListOfUsers.component';
+import { EditUsersComponent } from './components/classroomUsers/editUsers/editUsers.component';
 
+import localeEs from '@angular/common/locales/es'
+
+registerLocaleData(localeEs)
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,11 +38,23 @@ import { SubjectsComponent } from './components/users/subjects/subjects.componen
     YesNoModalComponent,
     UserFormComponent,
     SubjectsComponent,
+    AsignaturesComponent,
+    NewAsignatureFormComponent,
+    LoginComponent,
+    ClassroomsComponent,
+    ClassroomFormComponent,
+    SingleSubjectSelectorComponent,
+    ClassroomUsersComponent,
+    EditListOfUsersComponent,
+    EditUsersComponent
   ],
 
   entryComponents: [
     YesNoModalComponent,
     UserFormComponent,
+    NewAsignatureFormComponent,
+    ClassroomFormComponent,
+    EditUsersComponent,
   ],
 
   imports: [
@@ -40,7 +67,12 @@ import { SubjectsComponent } from './components/users/subjects/subjects.componen
     MatNativeDateModule,
     ReactiveFormsModule,
   ],
-  providers: [UserService],
+  providers: [
+    UserService, 
+    SubjectsService,
+    SessionService,
+  ],
   bootstrap: [AppComponent],
+  
 })
 export class AppModule { }

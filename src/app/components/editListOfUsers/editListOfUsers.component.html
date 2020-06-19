@@ -1,0 +1,57 @@
+<div class="tableContainer" *ngIf="dataSource; else elseBlock" class="overflowTable">
+  <mat-form-field  *ngIf="hasData()">
+    <mat-label>Buscar usuarios</mat-label>
+    <input matInput maxlength="55" (keyup)="applyFilter($event)" placeholder="Texto a buscar" />
+  </mat-form-field>
+  <table *ngIf="hasData(); else elseBlock2" mat-table [dataSource]="dataSource" class="mat-elevation-z8"
+    color="primary">
+    <!-- Position Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let user">
+        {{ user.name }}
+      </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="dni">
+      <mat-header-cell *matHeaderCellDef class="paddingColumnWithHugeText"> DNI </mat-header-cell>
+      <mat-cell *matCellDef="let user" class="paddingColumnWithHugeText"> {{ user.dni }} </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef> E-mail </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{ user.email }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let user">
+
+        <button mat-icon-button *ngIf="!deleteMode" (click)="addUser(user)">
+          <mat-icon matTooltip="Agregar usuario">add</mat-icon>
+        </button>
+
+        <button mat-icon-button *ngIf="deleteMode" (click)="deleteUser(user)">
+          <mat-icon *ngIf="user.active" matTooltip="Eliminar usuario">delete</mat-icon>
+        </button>
+
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </table>
+</div>
+
+<div class="loading">
+  <ng-template #elseBlock>
+    <img src="../../../assets/book.gif" height="200rem" />
+  </ng-template>
+</div>
+
+<div class="loading">
+  <ng-template #elseBlock2>
+    <h1>No hay usuarios para mostrar</h1>
+  </ng-template>
+</div>

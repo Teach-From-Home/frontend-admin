@@ -1,21 +1,11 @@
 .containerFriends{
-    text-align: auto;
+    width: auto;
+    text-align: center;
     margin: auto;
 }
 
-
 .matInputFriend{
-    width: 100%;
-}
-
-.autoMargin{
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-.listFriends{
-    flex-direction: column;
-    display: flex;
+    width: 85%;
 }
 
 mat-cmat-card-footer{
@@ -24,20 +14,19 @@ mat-cmat-card-footer{
 }
 
 .buttonAdd{
-margin: auto;
-flex-direction: row;
-display: flex;
-margin-left: 10px;
+    margin: auto;
+    flex-direction: row;
+    display: flex;
+    margin-left: 10px;
 }
-
 
 .buttonclear{
     flex: 1 1 auto;
 }
 
 .formAutocomplit{
-    min-width: 150px;
-    width: 90%;
+    min-width: auto;
+    width: auto;
     display: flex;
     flex-direction: row;
     margin-left: 1rem;

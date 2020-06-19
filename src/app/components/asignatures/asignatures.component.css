@@ -1,0 +1,32 @@
+.tableContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 1rem;
+}
+table{
+    width: 100%;
+    margin-top: -0.8rem;
+}
+.overflowA{
+    overflow-x:auto;
+}
+
+.formWarap{
+    margin-bottom: 0.8rem;
+}
+
+.paddingColumnWithHugeText{
+    min-height:auto; 
+    margin-left: 8px;
+    margin-right: 5px;
+    padding: 0 10px 0 0;
+}
+
+.newButtonPlus{
+    margin-left: 2rem;
+}
+
+img{
+    object-fit: contain;
+}

@@ -1,0 +1,45 @@
+<div *ngIf="classroom; else elseBlock">
+  <mat-dialog-content>
+    <h2>Editar materia</h2>
+    <form [formGroup]="dataForm">
+
+      <app-singleSubjectSelector [classroom]="classroom"> </app-singleSubjectSelector>
+
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput maxlength="55" formControlName="name" [(ngModel)]="classroom.name" placeholder="Ej: Cursada Lunes turno tarde">
+        <mat-error *ngIf="hasError('name','required')">
+          Ingrese un <strong>nombre</strong>
+        </mat-error>
+      </mat-form-field>
+       
+      <mat-form-field class="example-full-width">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput type="text" placeholder="Texto libre"
+          [(ngModel)]="classroom.description" maxlength="255"></textarea>
+        <mat-hint align="end"> {{classroom.description.length}}/255</mat-hint>
+      </mat-form-field>
+
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-flat-button [mat-dialog-close]="true" color="primary" (click)="saveChanges()"
+      [disabled]="formHasData()">
+      Guardar
+    </button>
+
+    <button mat-flat-button [mat-dialog-close]="false" color="warn">
+      Cancelar
+    </button>
+  </mat-dialog-actions>
+
+</div>
+
+<div class="loading">
+  <ng-template #elseBlock>
+    <img src="../../../../assets/book.gif" height="200rem" />
+  </ng-template>
+</div>

@@ -3,16 +3,31 @@
     flex-direction: column;
     width: 100%;
     margin: 1rem;
-    align-items: center;
 }
-table{
-    width: 95%;
-    margin-top: -0.8rem;
+
+table {
+   width: 100%;
 }
-.formWarap{
-    margin-left: -78%;
-    margin-bottom: 0.8rem;
+
+.mat-row {
+   height: auto;
 }
-button{
+
+.paddingColumnWithHugeText{
+    min-height:auto; 
+    margin-left: 8px;
+    margin-right: 5px;
+    padding: 0 150px 0 0;
+}
+
+img{
+    object-fit: contain;
+}
+
+.overflowA{
+    overflow-x:auto;
+}
+
+.newButtonPlus{
     margin-left: 2rem;
 }

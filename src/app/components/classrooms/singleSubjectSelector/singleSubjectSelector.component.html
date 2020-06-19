@@ -1,0 +1,20 @@
+<mat-card *ngIf="subjectsNotAdded" class="mainFriends">
+  <div class="containerFriends">
+    <h2 *ngIf="classroom.subject">Materia: </h2><br>
+    <h1 *ngIf="classroom.subject"><strong>{{classroom.subject.name}}</strong></h1><br>
+    <div class="LoginFriends">
+      <form class="formAutocomplit">
+        <mat-form-field appearance="outline" class="matInputFriend">
+          <mat-label>Materias</mat-label>
+          <input type="text" placeholder="Seleccione una materia" aria-label="allSubjects" [(ngModel)]="textb"
+          matInput maxlength="55" [formControl]="myControl" [matAutocomplete]="auto" (keyup.enter)="addSubject()">
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option (click)="addSubject()" *ngFor="let subject of getSubjectsNotAdded()" [value]="subject" class="widthAutoOption">
+              {{subject.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+</mat-card>

@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from 'src/app/domain/user';
-import { UserService } from 'src/app/services/userService';
+import { UserService } from 'src/app/services/user.service';
 import { isUndefined } from 'util';
 
 @Component({
@@ -15,6 +15,7 @@ export class UserFormComponent implements OnInit {
 
   public dataForm: FormGroup
   user:User
+  hide:boolean=true
 
   constructor(private snackBar: MatSnackBar, public dialogRef: MatDialogRef<UserFormComponent>,
     private biulter: FormBuilder, @Optional() @Inject(MAT_DIALOG_DATA) private data: string,
@@ -26,7 +27,6 @@ export class UserFormComponent implements OnInit {
       password: ['', Validators.required],
       dni: ['', Validators.required],
       email: ['', Validators.required],
-      role:['', Validators.required],
     })
   }
 
@@ -43,7 +43,7 @@ export class UserFormComponent implements OnInit {
   }
 
   formHasData() {
-    return this.dataForm.status == 'INVALID'
+    return this.dataForm.status == 'INVALID' || isUndefined(this.user.role)
   }
 
   error(errorMessage: string) {

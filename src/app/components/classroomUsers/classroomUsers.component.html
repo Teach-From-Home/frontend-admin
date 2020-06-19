@@ -1,0 +1,29 @@
+<div class="tableContainer" *ngIf="users; else elseBlock">
+  <mat-card>
+    <div class="header">
+      <h2>Profesores</h2>
+      <span class="spacer"></span>
+      <button (click)="editUsers('TEACHER')" matTooltip="Agregar Profesor" mat-mini-fab color="primary">
+        +
+      </button>
+    </div>
+    <app-editListOfUsers (delete)="deleteUser($event)" [users]= "getTeachers()" [type]="'TEACHER'" [id]="routeId" ></app-editListOfUsers>
+  </mat-card>
+
+  <mat-card>
+    <div class="header">
+      <h2>Alumnos</h2>
+      <span class="spacer"></span>
+      <button (click)="editUsers('STUDENT')" matTooltip="Agregar Alumno" mat-mini-fab color="primary">
+        +
+      </button>
+    </div>
+    <app-editListOfUsers (delete)="deleteUser($event)" [type]="'STUDENT'" [users]= "getStudents()" [id]="routeId" ></app-editListOfUsers>
+  </mat-card>
+</div>
+
+<div class="loading">
+  <ng-template #elseBlock>
+    <img src="../../../assets/book.gif" height="200rem" />
+  </ng-template>
+</div>

@@ -6,10 +6,10 @@
       <form class="formAutocomplit">
         <mat-form-field appearance="outline" class="matInputFriend">
           <mat-label>Materias</mat-label>
-          <input type="text" placeholder="Seleccione un subject" aria-label="allSubjects" matInput
-            [formControl]="myControl" [matAutocomplete]="auto" required>
+          <input type="text" placeholder="Seleccione un subject" aria-label="allSubjects" matInput maxlength="55"
+            [formControl]="myControl" [matAutocomplete]="auto" [(ngModel)]="textb" required (keyup.enter)="addSubject()">
           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-            <mat-option *ngFor="let subject of subjectsNotAdded" [value]="subject">
+            <mat-option *ngFor="let subject of getSubjectsNotAdded()" (click)="addSubject()" [value]="subject">
               {{subject.name}}
             </mat-option>
           </mat-autocomplete>
@@ -18,22 +18,19 @@
           </mat-error>
         </mat-form-field>
         <mat-card-footer class="buttonAdd">
-          <button color="primary" mat-flat-button (click)="addSubject()" [disabled]="cantAddSubject()">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">add
-            </mat-icon>
-          </button>
         </mat-card-footer>
       </form>
     </div>
     <mat-nav-list class="listFriends">
       <div *ngFor="let subject of user.subjects" class="buttonRemove">
-        <mat-list-item>
+        <mat-list-item class="autoMargin">
           {{subject.name}}
+          
+          <button mat-flat-button (click)="deleteSubject(subject)">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">clear
+            </mat-icon>
+          </button>
         </mat-list-item>
-        <button mat-flat-button (click)="deleteSubject(subject)">
-          <mat-icon aria-hidden="false" aria-label="Example home icon">clear
-          </mat-icon>
-        </button>
       </div>
     </mat-nav-list>
   </div>
