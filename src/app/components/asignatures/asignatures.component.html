@@ -2,7 +2,7 @@
   <div class="formWarap" *ngIf="dataSource">
     <mat-form-field>
       <mat-label>Buscar materias</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Texto a buscar" />
+      <input matInput (keyup)="applyFilter($event)" placeholder="Texto a buscar" maxlength="55"/>
     </mat-form-field>
     <span>
       <button mat-mini-fab color="primary" (click)="editSubject('')" class="newButtonPlus"> 

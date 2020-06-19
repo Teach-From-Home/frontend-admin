@@ -4,35 +4,38 @@
     <form [formGroup]="dataForm">
       <mat-form-field class="example-full-width">
         <mat-label>Nombre</mat-label>
-        <input matInput [(ngModel)]="user.name" formControlName="name" placeholder="Ej. Agustin">
+        <input matInput maxlength="55" [(ngModel)]="user.name" formControlName="name" placeholder="Ej. Agustin">
         <mat-error *ngIf="hasError('name','required')">
           Ingrese un <strong>nombre</strong>
         </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <mat-label>Apellido</mat-label>
-        <input matInput [(ngModel)]="user.lastname" formControlName="lastName" placeholder="Ej. Perez">
+        <input matInput maxlength="55" [(ngModel)]="user.lastname" formControlName="lastName" placeholder="Ej. Perez">
         <mat-error *ngIf="hasError('lastName','required')">
           Ingrese un <strong>apellido</strong>
         </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <mat-label>Contraseña</mat-label>
-        <input matInput [(ngModel)]="user.password" formControlName="password" placeholder="Ej. 6%43%a@adi">
+        <input matInput [type]="hide ? 'password' : 'text'" maxlength="20" [(ngModel)]="user.password" formControlName="password" placeholder="*******">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
         <mat-error *ngIf="hasError('password','required')">
           Ingrese una <strong>contraseña</strong>
         </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <mat-label>Dni</mat-label>
-        <input matInput inputmode="numeric" pattern="[0-9]*" digitOnly [(ngModel)]="user.dni" formControlName="dni" placeholder="Ej. 44658872">
+        <input matInput maxlength="10" inputmode="numeric" pattern="[0-9]" digitOnly [(ngModel)]="user.dni" formControlName="dni" placeholder="Ej. 44658872">
         <mat-error *ngIf="hasError('dni','required')">
           Ingrese un <strong>DNI</strong>
         </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <mat-label>Email</mat-label>
-        <input matInput [(ngModel)]="user.email" formControlName="email" placeholder="Ej. pedro@example.example">
+        <input matInput maxlength="55" [(ngModel)]="user.email" formControlName="email" placeholder="Ej. pedro@example.example">
         <mat-error *ngIf="hasError('email','required')">
           Ingrese un <strong> email </strong>
         </mat-error>

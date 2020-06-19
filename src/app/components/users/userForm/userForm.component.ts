@@ -15,6 +15,7 @@ export class UserFormComponent implements OnInit {
 
   public dataForm: FormGroup
   user:User
+  hide:boolean=true
 
   constructor(private snackBar: MatSnackBar, public dialogRef: MatDialogRef<UserFormComponent>,
     private biulter: FormBuilder, @Optional() @Inject(MAT_DIALOG_DATA) private data: string,

@@ -2,7 +2,7 @@
   <div class="formWarap">
     <mat-form-field>
       <mat-label>Buscar usuarios</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Texto a buscar" />
+      <input matInput maxlength="55" (keyup)="applyFilter($event)" placeholder="Texto a buscar" />
     </mat-form-field>
     <span>
       <button mat-mini-fab color="primary" (click)="editUser('')" class="newButtonPlus">

@@ -5,7 +5,7 @@
 
       <mat-form-field class="example-full-width">
         <mat-label>Nombre</mat-label>
-        <input matInput [(ngModel)]="subject.name" formControlName="name" placeholder="Ej. Base de datos">
+        <input matInput [(ngModel)]="subject.name" maxlength="55" formControlName="name" placeholder="Ej. Base de datos">
         <mat-error *ngIf="hasError('name','required')">
           Ingrese un <strong>nombre</strong>
         </mat-error>
