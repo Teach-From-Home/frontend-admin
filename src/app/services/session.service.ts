@@ -21,7 +21,6 @@ export class SessionService {
 
   getCookie():string{
     const user = JSON.parse(localStorage.getItem("session"))
-    console.log(user)
     return user
   }
 

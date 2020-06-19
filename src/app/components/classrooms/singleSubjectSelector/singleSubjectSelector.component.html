@@ -6,9 +6,10 @@
       <form class="formAutocomplit">
         <mat-form-field appearance="outline" class="matInputFriend">
           <mat-label>Materias</mat-label>
-          <input type="text" placeholder="Seleccione una materia" aria-label="allSubjects" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <input type="text" placeholder="Seleccione una materia" aria-label="allSubjects" [(ngModel)]="textb"
+          matInput [formControl]="myControl" [matAutocomplete]="auto" (keyup.enter)="addSubject()">
           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-            <mat-option (click)="addSubject()" *ngFor="let subject of subjectsNotAdded" [value]="subject" class="widthAutoOption">
+            <mat-option (click)="addSubject()" *ngFor="let subject of getSubjectsNotAdded()" [value]="subject" class="widthAutoOption">
               {{subject.name}}
             </mat-option>
           </mat-autocomplete>

@@ -7,9 +7,9 @@
         <mat-form-field appearance="outline" class="matInputFriend">
           <mat-label>Materias</mat-label>
           <input type="text" placeholder="Seleccione un subject" aria-label="allSubjects" matInput
-            [formControl]="myControl" [matAutocomplete]="auto" required>
+            [formControl]="myControl" [matAutocomplete]="auto" [(ngModel)]="textb" required (keyup.enter)="addSubject()">
           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-            <mat-option *ngFor="let subject of subjectsNotAdded" (click)="addSubject()" [value]="subject">
+            <mat-option *ngFor="let subject of getSubjectsNotAdded()" (click)="addSubject()" [value]="subject">
               {{subject.name}}
             </mat-option>
           </mat-autocomplete>
