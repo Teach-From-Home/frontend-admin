@@ -15,12 +15,12 @@ export class SessionService {
 
   async authenticate(credentials: User) {
     const userLogged = await this.http.post<User>(REST_SERVER_URL + '/login?AppType=admin', credentials).toPromise()
-    localStorage.setItem("session",JSON.stringify(userLogged))
+    sessionStorage.setItem("session",JSON.stringify(userLogged))
   }
 
 
   getCookie():string{
-    const user = JSON.parse(localStorage.getItem("session"))
+    const user = JSON.parse(sessionStorage.getItem("session"))
     return user
   }
 
@@ -29,7 +29,7 @@ export class SessionService {
   }
 
   logout(){
-    localStorage.clear()
+    sessionStorage.clear()
   }
-
+ 
 }
