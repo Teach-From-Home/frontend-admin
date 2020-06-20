@@ -9,16 +9,20 @@
 
       <mat-form-field class="example-full-width">
         <mat-label>Nombre</mat-label>
-        <input matInput maxlength="55" formControlName="name" [(ngModel)]="classroom.name" placeholder="Ej: Cursada Lunes turno tarde">
+        <input matInput maxlength="55" formControlName="name" [(ngModel)]="classroom.name"
+          placeholder="Ej: Cursada Lunes turno tarde">
         <mat-error *ngIf="hasError('name','required')">
           Ingrese un <strong>nombre</strong>
         </mat-error>
       </mat-form-field>
-       
+
       <mat-form-field class="example-full-width">
         <mat-label>Descripción</mat-label>
-        <textarea matInput type="text" placeholder="Texto libre"
-          [(ngModel)]="classroom.description" maxlength="255"></textarea>
+        <input matInput maxlength="255" formControlName="description" [(ngModel)]="classroom.description" 
+        placeholder="Texto libre">
+        <mat-error *ngIf="hasError('description','required')">
+          Ingrese una <strong>descripcion</strong>
+        </mat-error>
         <mat-hint align="end"> {{classroom.description.length}}/255</mat-hint>
       </mat-form-field>
 

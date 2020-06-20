@@ -23,6 +23,7 @@ export class ClassroomFormComponent implements OnInit {
 
     this.dataForm = this.biulter.group({
       name: ['', Validators.required],
+      description: ['',  Validators.required]
     })
   }
 
@@ -32,6 +33,7 @@ export class ClassroomFormComponent implements OnInit {
       this.classroom = new Classroom()
     else
       this.classroom = await this.classroomService.getClassroomById(this.data)
+      console.log(this.classroom)
   }
 
   public hasError = (controlName: string, errorName: string) => {
@@ -53,5 +55,4 @@ export class ClassroomFormComponent implements OnInit {
       console.log("algo malio sal")
     }
   }
-
 }
