@@ -15,6 +15,7 @@ export class NewAsignatureFormComponent implements OnInit {
 
   public dataForm: FormGroup
   subject:Subject
+  title
 
   constructor(private snackBar: MatSnackBar, public dialogRef: MatDialogRef<NewAsignatureFormComponent>,
     private biulter: FormBuilder, @Optional() @Inject(MAT_DIALOG_DATA) private data: string,
@@ -28,10 +29,14 @@ export class NewAsignatureFormComponent implements OnInit {
 
   async ngOnInit() {
     this.dialogRef.disableClose = true;
-    if (this.data === "")
+    if (this.data === ""){
       this.subject = new Subject()
-    else
+      this.title = "Crear"
+    }
+    else{
       this.subject = await this.subjectService.getSubjectById(this.data)
+      this.title = "Editar"
+    }
   }
 
   public hasError = (controlName: string, errorName: string) => {

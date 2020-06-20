@@ -30,7 +30,7 @@ export class ClassroomsComponent implements OnInit {
   }
 
   shouldDelete(id: string) {
-    const dialogRef = this.dialog.open(YesNoModalComponent, {})
+    const dialogRef = this.dialog.open(YesNoModalComponent, {data:"el classroom"})
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.deleteSubject(id)
@@ -41,8 +41,9 @@ export class ClassroomsComponent implements OnInit {
 
   async deleteSubject(id: string) {
     try {
-      await this.classromService.deleteClassroom(id);
-      this.fetchAsignatures()
+      this.dataSource=null
+      await this.classromService.deleteClassroom(id)
+      .then(()=>this.fetchAsignatures())
     } catch (error) {
       console.log(error);
     }

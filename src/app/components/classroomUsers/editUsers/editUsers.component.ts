@@ -12,8 +12,6 @@ export class EditUsersComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<EditUsersComponent>, 
     @Optional() @Inject(MAT_DIALOG_DATA) public data, private classroomService:ClassroomService) { }
 
-
-
   ngOnInit() {
   }
 
@@ -21,7 +19,4 @@ export class EditUsersComponent implements OnInit {
     return this.data.type == "TEACHER" ? "profesores" : "alumnos"
   }
 
-  addUser(event: string) {
-    this.classroomService.addUser(this.data.id, event)
-  }
 }

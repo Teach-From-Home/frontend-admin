@@ -30,30 +30,34 @@ export class UsersComponent implements OnInit {
   }
 
   shouldDelete(id: string) {
-    const dialogRef = this.dialog.open(YesNoModalComponent, {})
+    const dialogRef = this.dialog.open(YesNoModalComponent, {data:"el usuario"})
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.deleteUser(id)
-        this.fetchUsers()
       }
     })
   }
 
   async deleteUser(id: string) {
     try {
-      await this.userService.deleteUser(id);
-      this.fetchUsers()
+      this.dataSource = null
+      await this.userService.deleteUser(id)
+        .then(() => this.fetchUsers())
     } catch (error) {
       console.log(error);
     }
   }
-  
+
   editUser(id: String) {
     const dialogRef = this.dialog.open(UserFormComponent, {
       data: id === "" ? "" : id
     })
     dialogRef.afterClosed().subscribe(result => {
-      if (result) this.fetchUsers()
+
+      if (result) {
+        this.dataSource = null
+        this.fetchUsers()
+      }
     })
   }
 

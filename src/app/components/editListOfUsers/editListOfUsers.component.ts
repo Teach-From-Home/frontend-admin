@@ -20,7 +20,6 @@ export class EditListOfUsersComponent implements OnInit {
   @Input() deleteMode: boolean = true
   @Input() users: User[]
   size: number
-  @Output() add = new EventEmitter<string>();
   @Output() delete = new EventEmitter<string>();
 
 
@@ -41,11 +40,9 @@ export class EditListOfUsersComponent implements OnInit {
   }
 
   async addUser(user: User) {
-    this.emitDelte(user.id)
     this.dataSource = null
-    setTimeout(() => {
-      this.fetchData()
-    }, 1000);
+    this.classroomSerice.addUser(this.id, user.id)
+    .then(()=>this.fetchData())
   }
 
   fetchData() {
@@ -74,10 +71,6 @@ export class EditListOfUsersComponent implements OnInit {
 
   emitAdd(id: string) {
     this.delete.emit(id);
-  }
-
-  emitDelte(id: string) {
-    this.add.emit(id);
   }
 
   hasData() {

@@ -14,8 +14,9 @@ import { isUndefined } from 'util';
 export class UserFormComponent implements OnInit {
 
   public dataForm: FormGroup
-  user:User
-  hide:boolean=true
+  user: User
+  hide: boolean = true
+  title = ""
 
   constructor(private snackBar: MatSnackBar, public dialogRef: MatDialogRef<UserFormComponent>,
     private biulter: FormBuilder, @Optional() @Inject(MAT_DIALOG_DATA) private data: string,
@@ -32,10 +33,14 @@ export class UserFormComponent implements OnInit {
 
   async ngOnInit() {
     this.dialogRef.disableClose = true;
-    if (this.data === "")
+    if (this.data === "") {
       this.user = new User()
-    else
+      this.title = "Crear"
+    }
+    else {
       this.user = await this.userService.getUserById(this.data)
+      this.title = "Editar"
+    }
   }
 
   public hasError = (controlName: string, errorName: string) => {
@@ -64,11 +69,11 @@ export class UserFormComponent implements OnInit {
     }
   }
 
-  getUser(){
+  getUser() {
     return !isUndefined(this.user)
   }
 
-  isTeacher(){
-    return this.user.role==="TEACHER"
+  isTeacher() {
+    return this.user.role === "TEACHER"
   }
 }

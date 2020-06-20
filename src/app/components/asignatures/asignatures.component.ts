@@ -29,19 +29,19 @@ export class AsignaturesComponent implements OnInit {
   }
 
   shouldDelete(id:string) {
-    const dialogRef = this.dialog.open(YesNoModalComponent, { })
+    const dialogRef = this.dialog.open(YesNoModalComponent, {data:"la materia"})
     dialogRef.afterClosed().subscribe((result) => {
       if(result){
         this.deleteSubject(id)
-        this.fetchAsignatures()
       }
     })
   }
 
   async deleteSubject(id:string){
     try {
-      await this.subjectService.deleteSubject(id);
-      this.fetchAsignatures()
+      this.dataSource=null
+      await this.subjectService.deleteSubject(id)
+      .then(()=>this.fetchAsignatures());
     } catch (error) {
       console.log(error);
     }
