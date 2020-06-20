@@ -57,9 +57,8 @@
         <mat-header-cell *matHeaderCellDef> Eliminar </mat-header-cell>
         <mat-cell *matCellDef="let classroom">
 
-          <button mat-icon-button (click)="shouldDelete(classroom.id)">
-            <!-- <mat-icon *ngIf="!subject.active" matTooltip="Reactivar materia">add</mat-icon> -->
-            <mat-icon *ngIf="classroom.active " matTooltip="Eliminar classroom">delete</mat-icon>
+          <button mat-icon-button *ngIf="classroom.active " (click)="shouldDelete(classroom.id)">
+            <mat-icon matTooltip="Eliminar classroom">delete</mat-icon>
           </button>
 
 

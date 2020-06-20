@@ -58,9 +58,8 @@
         <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
         <mat-cell *matCellDef="let user">
 
-          <button mat-icon-button (click)="shouldDelete(user.id)">
-            <!-- <mat-icon *ngIf="!user.active" matTooltip="Reactivar usuario">add</mat-icon> -->
-            <mat-icon *ngIf="user.active" matTooltip="Eliminar usuario">delete</mat-icon>
+          <button mat-icon-button *ngIf="user.active" (click)="shouldDelete(user.id)">
+            <mat-icon matTooltip="Eliminar usuario">delete</mat-icon>
           </button>
 
         </mat-cell>

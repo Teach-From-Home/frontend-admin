@@ -37,9 +37,8 @@
         <mat-cell *matCellDef="let subject">
 
     
-          <button mat-icon-button (click)="shouldDelete(subject.id)">
-            <!-- <mat-icon *ngIf="!subject.active" matTooltip="Reactivar materia">add</mat-icon> -->
-            <mat-icon *ngIf="subject.active" matTooltip="Eliminar materia">delete</mat-icon>
+          <button mat-icon-button *ngIf="subject.active" (click)="shouldDelete(subject.id)">
+            <mat-icon  matTooltip="Eliminar materia">delete</mat-icon>
           </button>
     
         </mat-cell>
