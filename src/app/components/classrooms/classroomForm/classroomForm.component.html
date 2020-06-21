@@ -8,11 +8,11 @@
       <br>
 
       <mat-form-field class="example-full-width">
-        <mat-label>Nombre</mat-label>
+        <mat-label>Dia/Turno</mat-label>
         <input matInput maxlength="55" formControlName="name" [(ngModel)]="classroom.name"
-          placeholder="Ej: Cursada Lunes turno tarde">
+          placeholder="Ej: Lunes turno tarde/Lunes de 18hs-22hs">
         <mat-error *ngIf="hasError('name','required')">
-          Ingrese un <strong>nombre</strong>
+          Especifique un <strong>Dia/Turno</strong>
         </mat-error>
       </mat-form-field>
 
