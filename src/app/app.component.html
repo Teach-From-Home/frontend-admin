@@ -1,5 +1,5 @@
 <mat-toolbar color="accent" *ngIf="sessionService.isAuthenticated()">
-  <img src="../assets/tfm.png" width="70rem" routerLink="/home" />
+  <img src="../assets/tfm.png" width="50rem" routerLink="/home" />
   <span class="spacer"></span>
   <button mat-raised-button color="primary" (click)="sessionService.logout()" [routerLink]="['/login']">Cerrar sesión</button>
 </mat-toolbar>
