@@ -29,7 +29,7 @@ export class AsignaturesComponent implements OnInit {
   }
 
   shouldDelete(id:string) {
-    const dialogRef = this.dialog.open(YesNoModalComponent, {data:"la materia"})
+    const dialogRef = this.dialog.open(YesNoModalComponent, {data:"Desea eliminar la materia?"})
     dialogRef.afterClosed().subscribe((result) => {
       if(result){
         this.deleteSubject(id)

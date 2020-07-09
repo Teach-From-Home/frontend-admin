@@ -30,7 +30,7 @@ export class UsersComponent implements OnInit {
   }
 
   shouldDelete(id: string) {
-    const dialogRef = this.dialog.open(YesNoModalComponent, {data:"el usuario"})
+    const dialogRef = this.dialog.open(YesNoModalComponent, {data:"Desea eliminar el usuario?"})
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.deleteUser(id)

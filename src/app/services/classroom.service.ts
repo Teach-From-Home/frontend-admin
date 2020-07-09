@@ -55,4 +55,7 @@ export class ClassroomService {
     return await this.httpCLient.delete(`${REST_SERVER_URL}/classroom/${cid}/user/${uid}`).toPromise()
   }
 
+  async restartClassroom(cid: string){
+    return await this.httpCLient.get(`${REST_SERVER_URL}/classroom/${cid}/reset`).toPromise()
+  }
 }

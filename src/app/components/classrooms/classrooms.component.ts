@@ -21,7 +21,7 @@ export class ClassroomsComponent implements OnInit {
     this.fetchAsignatures();
   }
 
-  displayedColumns: string[] = ['subject', 'name', 'edit Classroom', 'edit Users', 'Delete'];
+  displayedColumns: string[] = ['subject', 'name', 'edit Classroom', 'edit Users', 'Delete', 'Restart'];
   dataSource: MatTableDataSource<Subject>;
 
   applyFilter(event: Event) {
@@ -30,7 +30,7 @@ export class ClassroomsComponent implements OnInit {
   }
 
   shouldDelete(id: string) {
-    const dialogRef = this.dialog.open(YesNoModalComponent, {data:"el classroom"})
+    const dialogRef = this.dialog.open(YesNoModalComponent, {data:"Desea eliminar el classroom?"})
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.deleteSubject(id)
@@ -71,6 +71,24 @@ export class ClassroomsComponent implements OnInit {
 
   getStatus(subject: Subject) {
     return subject.active ? "activo" : "inactivo"
+  }
+
+  async restartClassroom(id: string) {
+    try {
+      await this.classromService.restartClassroom(id)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  wantRestart(id: string) {
+    const dialogRef = this.dialog.open(YesNoModalComponent, {data:"Desea reiniciar el classroom?"})
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.restartClassroom(id)
+        this.fetchAsignatures()
+      }
+    })
   }
 
 }
