@@ -5,23 +5,33 @@ import { YesNoModalComponent } from '../yesNoModal/yesNoModal.component';
 import { Subject } from 'src/app/domain/subject';
 import { ClassroomService } from 'src/app/services/classroom.service';
 import { ClassroomFormComponent } from './classroomForm/classroomForm.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-classrooms',
   templateUrl: './classrooms.component.html',
-  styleUrls: ['./classrooms.component.css']
+  styleUrls: ['./classrooms.component.css'],
 })
 export class ClassroomsComponent implements OnInit {
+  constructor(
+    public dialog: MatDialog,
+    private classromService: ClassroomService,
+    private snackBar: MatSnackBar
 
-  constructor(public dialog: MatDialog, private classromService: ClassroomService) {
-  }
-
+  ) {}
 
   ngOnInit(): void {
     this.fetchAsignatures();
   }
 
-  displayedColumns: string[] = ['subject', 'name', 'edit Classroom', 'edit Users', 'Delete', 'Restart'];
+  displayedColumns: string[] = [
+    'subject',
+    'name',
+    'edit Classroom',
+    'edit Users',
+    'Delete',
+    'Restart',
+  ];
   dataSource: MatTableDataSource<Subject>;
 
   applyFilter(event: Event) {
@@ -30,20 +40,29 @@ export class ClassroomsComponent implements OnInit {
   }
 
   shouldDelete(id: string) {
-    const dialogRef = this.dialog.open(YesNoModalComponent, {data:"Desea eliminar el classroom?"})
+    const dialogRef = this.dialog.open(YesNoModalComponent, {
+      data: 'Desea eliminar el classroom?',
+    });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.deleteSubject(id)
-        this.fetchAsignatures()
+        this.deleteSubject(id);
+        this.fetchAsignatures();
       }
-    })
+    });
+  }
+
+  error(errorType: string) {
+    this.snackBar.open(errorType, 'x', {
+      duration: 2000,
+    });
   }
 
   async deleteSubject(id: string) {
     try {
-      this.dataSource=null
-      await this.classromService.deleteClassroom(id)
-      .then(()=>this.fetchAsignatures())
+      this.dataSource = null;
+      await this.classromService
+        .deleteClassroom(id)
+        .then(() => this.fetchAsignatures());
     } catch (error) {
       console.log(error);
     }
@@ -51,44 +70,46 @@ export class ClassroomsComponent implements OnInit {
 
   editSubject(id: String) {
     const dialogRef = this.dialog.open(ClassroomFormComponent, {
-      data: id === "" ? "" : id
-    })
-    dialogRef.afterClosed().subscribe(result => {
+      data: id === '' ? '' : id,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.dataSource = null
+        this.dataSource = null;
         setTimeout(() => {
-          this.fetchAsignatures()
-        }, 600)
+          this.fetchAsignatures();
+        }, 600);
       }
-    })
-    return
+    });
+    return;
   }
 
   async fetchAsignatures() {
-    const response = await this.classromService.getClassrooms()
+    const response = await this.classromService.getClassrooms();
     this.dataSource = new MatTableDataSource<Subject>(response);
   }
 
   getStatus(subject: Subject) {
-    return subject.active ? "activo" : "inactivo"
+    return subject.active ? 'activo' : 'inactivo';
   }
 
   async restartClassroom(id: string) {
     try {
-      await this.classromService.restartClassroom(id)
+      await this.classromService.restartClassroom(id);
+      this.error('Classroom reiniciado con exito!')
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
   wantRestart(id: string) {
-    const dialogRef = this.dialog.open(YesNoModalComponent, {data:"Desea reiniciar el classroom?"})
+    const dialogRef = this.dialog.open(YesNoModalComponent, {
+      data: 'Desea reiniciar el classroom?',
+    });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.restartClassroom(id)
-        this.fetchAsignatures()
+        this.restartClassroom(id);
+        this.fetchAsignatures();
       }
-    })
+    });
   }
-
 }
